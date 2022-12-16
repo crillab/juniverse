@@ -9,6 +9,7 @@
 apply plugin: "eclipse"
 apply plugin: "java"
 apply plugin: "jacoco"
+apply plugin: "maven-publish"
 
 /**********************
  * Main Configuration *
@@ -78,6 +79,105 @@ jacocoTestReport {
         xml.required = true
     }
 }
+
+
+/*************************
+ * Javadoc Configuration *
+ *************************/
+
+tasks.withType(Javadoc) {
+    // Adding the classpath to the module path.
+    doFirst {
+        options.modulePath = [] + classpath.files
+        options.classpath = []
+    }
+
+    // Specifying how to deal with '@implSpec' tags.
+    configure(options) {
+        tags('implSpec:a:Implementation Requirements:')
+    }
+}
+
+/****************
+ * Distribution *
+ ****************/
+
+// Adding the Javadoc and source JARs to the generated artifacts.
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
+// Configuring the POM file to publish.
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            artifactId = "fr.cril.juniverse"
+            from components.java
+
+            versionMapping {
+                usage("java-api") {
+                    fromResolutionOf("runtimeClasspath")
+                }
+                usage("java-runtime") {
+                    fromResolutionResult()
+                }
+            }
+
+            pom {
+                name = "JUniverse"
+                description = "A universal solver interface."
+                url = "https://github.com/crillab/juniverse"
+
+                licenses {
+                    license {
+                        name = "GNU Lesser General Public License, Version 3"
+                        url = "https://www.gnu.org/licenses/lgpl-3.0.html"
+                    }
+                }
+
+                developers {
+                    developer {
+                        id = "thibaultfalque"
+                        name = "Thibault Falque"
+                        email = "falque@cril.fr"
+                    }
+
+                    developer {
+                        id = "romainwallon"
+                        name = "Romain Wallon"
+                        email = "wallon@cril.fr"
+                    }
+                }
+
+                scm {
+                    connection = "scm:git:https://github.com/crillab/juniverse"
+                    developerConnection = "scm:git:https://github.com/crillab/juniverse"
+                    url = "https://github.com/crillab/juniverse"
+                }
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/crillab/universe")
+            credentials {
+                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
+                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+            }
+        }
+    }
+    
+    publications {
+        gpr(MavenPublication) {
+            from(components.java)
+        }
+    }
+}
+
+
 
 /*************
  * Packaging *
