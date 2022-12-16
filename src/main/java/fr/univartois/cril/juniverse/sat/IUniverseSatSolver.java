@@ -56,7 +56,6 @@ public interface IUniverseSatSolver extends IUniverseSolver{
      *            a vector of set (VecInt) of literals in the dimacs format. The
      *            vector can be reused since the solver is not supposed to keep
      *            a reference to that vector.
-     * @see #addClause(IVecInt)
      */
      default void addAllClauses( List<List<Integer>> clauses){
         for(var v:clauses){
