@@ -19,7 +19,7 @@ def outDir = "${rootDir}/dist"
 def jarDir = "${outDir}/home"
 
 group = "fr.cril"
-version = "0.1.0"
+version = "0.1.1"
 
 ext.moduleName = "fr.univartois.cril.juniverse"
 
@@ -115,8 +115,9 @@ java {
 publishing {
     publications {
         mavenJava(MavenPublication) {
-            artifactId = "fr.cril.juniverse"
-            version = "0.1.0"
+            groupId = "fr.cril"
+            artifactId = "juniverse"
+            version = "0.1.1"
             from components.java
 
             versionMapping {
