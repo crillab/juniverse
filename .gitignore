@@ -44,3 +44,6 @@ gradle-app.setting
 hs_err_pid*
 replay_pid*
 /bin/
+
+# Ignore Gradle build output directory
+build

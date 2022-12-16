@@ -2,7 +2,7 @@
 
 | License | Linux                                                                                                                                                         & Windows | SonarCloud |
 | -------- |--------------------------------------------------------------------------------------------------------------------------------------------------------------- |-------- |
-| [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)     | [![Build Status](https://github.com/crillab/juniverse/actions/workflows/gradle.yml/badge.svg)](https://github.com/crillab/juniverse/actions/workflows/gradle.yml) |    |
+| [![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)     | [![Build Status](https://github.com/crillab/juniverse/actions/workflows/build-jar.yml/badge.svg)](https://github.com/crillab/juniverse/actions/workflows/build-jar.yml) |    |
 
 ## Description
  
