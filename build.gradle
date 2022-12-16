@@ -171,12 +171,6 @@ publishing {
             }
         }
     }
-    
-    publications {
-        pluginMaven(MavenPublication) {
-            from(components.java)
-        }
-    }
 }
 
 
