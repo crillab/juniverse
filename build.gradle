@@ -18,6 +18,7 @@ apply plugin: "maven-publish"
 def outDir = "${rootDir}/dist"
 def jarDir = "${outDir}/home"
 
+group = "fr.cril"
 ext.moduleName = "fr.univartois.cril.juniverse"
 
 sourceCompatibility = "10"
