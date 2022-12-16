@@ -24,6 +24,7 @@ import java.math.BigInteger;
 import java.util.List;
 
 import fr.univartois.cril.juniverse.sat.IUniverseSatSolver;
+import fr.univartois.cril.juniverse.core.UniverseContradictionException;
 
 
 /**
@@ -47,12 +48,10 @@ public interface IUniversePseudoBooleanSolver extends IUniverseSatSolver {
      *            since the solver is not supposed to keep a reference to that
      *            vector.
      * @param moreThan
-     *            true if it is a constraint >= degree, false if it is a
-     *            constraint <= degree
+     *            true if it is a constraint &gt;= degree, false if it is a
+     *            constraint &lt;= degree
      * @param d
      *            the degree of the cardinality constraint
-     * @return a reference to the constraint added in the solver, to use in
-     *         removeConstr().
      * @throws UniverseContradictionException
      *             iff the vector of literals is empty or if the constraint is
      *             falsified after unit propagation
@@ -73,8 +72,6 @@ public interface IUniversePseudoBooleanSolver extends IUniverseSatSolver {
      *            vector.
      * @param degree
      *            the degree of the pseudo-boolean constraint
-     * @return a reference to the constraint added in the solver, to use in
-     *         removeConstr().
      * @throws UniverseContradictionException
      *             iff the constraint is found trivially unsat.
      * 
@@ -95,8 +92,6 @@ public interface IUniversePseudoBooleanSolver extends IUniverseSatSolver {
      *            vector.
      * @param degree
      *            the degree of the pseudo-boolean constraint
-     * @return a reference to the constraint added in the solver, to use in
-     *         removeConstr().
      * @throws UniverseContradictionException
      *             iff the constraint is found trivially unsat.
      * 
@@ -118,8 +113,6 @@ public interface IUniversePseudoBooleanSolver extends IUniverseSatSolver {
      *            vector.
      * @param degree
      *            the degree of the pseudo-boolean constraint
-     * @return a reference to the constraint added in the solver, to use in
-     *         removeConstr().
      * @throws UniverseContradictionException
      *             iff the constraint is found trivially unsat.
      * 
@@ -139,8 +132,6 @@ public interface IUniversePseudoBooleanSolver extends IUniverseSatSolver {
      *            vector.
      * @param degree
      *            the degree of the pseudo-boolean constraint
-     * @return a reference to the constraint added in the solver, to use in
-     *         removeConstr().
      * @throws UniverseContradictionException
      *             iff the constraint is found trivially unsat.
      * 
@@ -161,8 +152,6 @@ public interface IUniversePseudoBooleanSolver extends IUniverseSatSolver {
      *            vector.
      * @param weight
      *            the number of literals that must be satisfied
-     * @return a reference to the constraint added to the solver. It might
-     *         return an object representing a group of constraints.
      * @throws UniverseContradictionException
      *             iff the constraint is trivially unsatisfiable.
      * 
@@ -181,8 +170,6 @@ public interface IUniversePseudoBooleanSolver extends IUniverseSatSolver {
      *            vector.
      * @param weight
      *            the number of literals that must be satisfied
-     * @return a reference to the constraint added to the solver. It might
-     *         return an object representing a group of constraints.
      * @throws UniverseContradictionException
      *             iff the constraint is trivially unsatisfiable.
      * 

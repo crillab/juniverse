@@ -73,7 +73,7 @@ public interface IUniverseSolver {
     /**
      * Sets the time limit before interrupting the search.
      *
-     * @param seconds The time limit to set (in milli-seconds).
+     * @param mseconds The time limit to set (in milli-seconds).
      */
     void setTimeoutMs(long mseconds);
 

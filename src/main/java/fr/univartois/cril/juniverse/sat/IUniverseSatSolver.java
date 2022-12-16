@@ -44,11 +44,6 @@ public interface IUniverseSatSolver extends IUniverseSolver{
      *
      * @param literals
      *            a set of literals
-     * @return a reference to the raint added in the solver, to use in
-     *         removeConstr().
-     * @throws UniverseContradictionException
-     *             iff the vector of literals is empty or if it contains only
-     *             falsified literals after unit propagation
      */
      void addClause( List<Integer> literals);
 
@@ -61,9 +56,6 @@ public interface IUniverseSatSolver extends IUniverseSolver{
      *            a vector of set (VecInt) of literals in the dimacs format. The
      *            vector can be reused since the solver is not supposed to keep
      *            a reference to that vector.
-     * @throws ContradictionException
-     *             iff the vector of literals is empty or if it contains only
-     *             falsified literals after unit propagation
      * @see #addClause(IVecInt)
      */
      default void addAllClauses( List<List<Integer>> clauses){

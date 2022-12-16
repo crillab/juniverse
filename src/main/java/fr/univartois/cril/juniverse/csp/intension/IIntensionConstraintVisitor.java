@@ -21,6 +21,8 @@
 package fr.univartois.cril.juniverse.csp.intension;
 
 
+import fr.univartois.cril.juniverse.core.UniverseContradictionException;
+
 /**
  * The IIntensionConstraintVisitor visits an intension constraint in order to compute its
  * encoding using pseudo-Boolean constraints.
@@ -37,7 +39,7 @@ public interface IIntensionConstraintVisitor {
      *
      * @param constr The constraint to visit.
      *
-     * @throws ContradictionException If visiting (and encoding) the constraint results in
+     * @throws UniverseContradictionException If visiting (and encoding) the constraint results in
      *         a trivial inconsistency.
      */
     void visit(UnaryIntensionConstraint constr);
@@ -47,7 +49,7 @@ public interface IIntensionConstraintVisitor {
      *
      * @param constr The constraint to visit.
      *
-     * @throws ContradictionException If visiting (and encoding) the constraint results in
+     * @throws UniverseContradictionException If visiting (and encoding) the constraint results in
      *         a trivial inconsistency.
      */
     void visit(BinaryIntensionConstraint constr);
@@ -57,7 +59,7 @@ public interface IIntensionConstraintVisitor {
      *
      * @param constr The constraint to visit.
      *
-     * @throws ContradictionException If visiting (and encoding) the constraint results in
+     * @throws UniverseContradictionException If visiting (and encoding) the constraint results in
      *         a trivial inconsistency.
      */
     void visit(NaryIntensionConstraint constr);
@@ -67,7 +69,7 @@ public interface IIntensionConstraintVisitor {
      *
      * @param ifThenElse The constraint to visit.
      *
-     * @throws ContradictionException If visiting (and encoding) the constraint results in
+     * @throws UniverseContradictionException If visiting (and encoding) the constraint results in
      *         a trivial inconsistency.
      */
     void visit(IfThenElseIntensionConstraint ifThenElse);
