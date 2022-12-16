@@ -112,6 +112,7 @@ java {
 publishing {
     publications {
         mavenJava(MavenPublication) {
+            groupId = "fr.cril"
             artifactId = "fr.cril.juniverse"
             from components.java
 
