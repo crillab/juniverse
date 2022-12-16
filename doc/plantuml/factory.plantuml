@@ -1,0 +1,7 @@
+@startuml
+interface ISolverFactory [[java:fr.univartois.cril.juniverse.utils.ISolverFactory]] {
+	createSatSolver(): IUniverseSatSolver
+	createPseudoBooleanSolver(): IUniversePseudoBooleanSolver
+	createCspSolver(): IUniverseCSPSolver
+}
+@enduml

@@ -1,0 +1,6 @@
+/*
+ * This is the settings.gradle configuration file of Sat4j-CSP.
+ */
+
+// Declaring the name of the project.
+rootProject.name = "juniverse"

@@ -1,0 +1,208 @@
+@startuml
+interface IUniverseSolver [[java:fr.univartois.cril.juniverse.core.IUniverseSolver]] {
+	reset(): void
+	nVariables(): int
+	getVariablesMapping(): Map<String,IUniverseVariable>
+	nConstraints(): int
+	setTimeout(seconds: long): void
+	setTimeoutMs(mseconds: long): void
+	setVerbosity(level: int): void
+	setLogFile(filename: String): void
+	solve(): UniverseSolverResult
+	solve(filename: String): UniverseSolverResult
+	solve(assumptions: List<UniverseAssumption<BigInteger>>): UniverseSolverResult
+	interrupt(): void
+	solution(): List<BigInteger>
+	mapSolution(): Map<String,BigInteger>
+}
+interface IUniverseCSPSolver [[java:fr.univartois.cril.juniverse.csp.IUniverseCSPSolver]] {
+	newVariable(id: String, min: int, max: int): void
+	newVariable(id: String, min: BigInteger, max: BigInteger): void
+	newVariable(id: String, values: List<? extends Number>): void
+	addInstantiation(variable: String, value: int): void
+	addInstantiation(variable: String, value: BigInteger): void
+	addInstantiation(variables: List<String>, values: List<? extends Number>): void
+	addClause(positive: List<String>, negative: List<String>): void
+	addLogical(operator: UniverseBooleanOperator, variables: List<String>): void
+	addLogical(variable: String, equiv: boolean, operator: UniverseBooleanOperator, variables: List<String>): void
+	addLogical(variable: String, left: String, operator: UniverseRelationalOperator, right: BigInteger): void
+	addLogical(variable: String, left: String, operator: UniverseRelationalOperator, right: String): void
+	addAllDifferent(variables: List<String>): void
+	addAllDifferent(variables: List<String>, except: List<BigInteger>): void
+	addAllDifferentMatrix(variableMatrix: List<List<String>>): void
+	addAllDifferentMatrix(variableMatrix: List<List<String>>, except: List<BigInteger>): void
+	addAllDifferentList(variableLists: List<List<String>>): void
+	addAllDifferentIntension(intensionConstraints: List<IIntensionConstraint>): void
+	addCardinalityWithConstantValuesAndConstantCounts(variables: List<String>, values: List<BigInteger>, occurs: List<BigInteger>, closed: boolean): void
+	addCardinalityWithConstantValuesAndConstantIntervalCounts(variables: List<String>, values: List<BigInteger>, occursMin: List<BigInteger>, occursMax: List<BigInteger>, closed: boolean): void
+	addCardinalityWithConstantValuesAndVariableCounts(variables: List<String>, values: List<BigInteger>, occurs: List<String>, closed: boolean): void
+	addCardinalityWithVariableValuesAndConstantCounts(variables: List<String>, values: List<String>, occurs: List<BigInteger>, closed: boolean): void
+	addCardinalityWithVariableValuesAndConstantIntervalCounts(variables: List<String>, values: List<String>, occursMin: List<BigInteger>, occursMax: List<BigInteger>, closed: boolean): void
+	addCardinalityWithVariableValuesAndVariableCounts(variables: List<String>, values: List<String>, occurs: List<String>, closed: boolean): void
+	addChannel(variables: List<String>, startIndex: int): void
+	addChannel(variables: List<String>, startIndex: int, value: String): void
+	addChannel(variables: List<String>, startIndex: int, otherVariables: List<String>, otherStartIndex: int): void
+	addAtLeast(variables: List<String>, value: BigInteger, count: BigInteger): void
+	addExactly(variables: List<String>, value: BigInteger, count: BigInteger): void
+	addExactly(variables: List<String>, value: BigInteger, count: String): void
+	addAmong(variables: List<String>, values: List<BigInteger>, count: BigInteger): void
+	addAmong(variables: List<String>, values: List<BigInteger>, count: String): void
+	addAtMost(variables: List<String>, value: BigInteger, count: BigInteger): void
+	addCountWithConstantValues(variables: List<String>, values: List<BigInteger>, operator: UniverseRelationalOperator, count: BigInteger): void
+	addCountWithConstantValues(variables: List<String>, values: List<BigInteger>, operator: UniverseRelationalOperator, count: String): void
+	addCountWithVariableValues(variables: List<String>, values: List<String>, operator: UniverseRelationalOperator, count: BigInteger): void
+	addCountWithVariableValues(variables: List<String>, values: List<String>, operator: UniverseRelationalOperator, count: String): void
+	addCountIntensionWithConstantValues(expressions: List<IIntensionConstraint>, values: List<BigInteger>, operator: UniverseRelationalOperator, count: BigInteger): void
+	addCountIntensionWithConstantValues(expressions: List<IIntensionConstraint>, values: List<BigInteger>, operator: UniverseRelationalOperator, count: String): void
+	addCumulativeConstantLengthsConstantHeights(origins: List<String>, lengths: List<BigInteger>, heights: List<BigInteger>, operator: UniverseRelationalOperator, value: BigInteger): void
+	addCumulativeConstantLengthsConstantHeights(origins: List<String>, lengths: List<BigInteger>, ends: List<String>, heights: List<BigInteger>, operator: UniverseRelationalOperator, value: BigInteger): void
+	addCumulativeConstantLengthsConstantHeights(origins: List<String>, lengths: List<BigInteger>, heights: List<BigInteger>, operator: UniverseRelationalOperator, value: String): void
+	addCumulativeConstantLengthsConstantHeights(origins: List<String>, lengths: List<BigInteger>, ends: List<String>, heights: List<BigInteger>, operator: UniverseRelationalOperator, value: String): void
+	addCumulativeConstantLengthsVariableHeights(origins: List<String>, lengths: List<BigInteger>, heights: List<String>, operator: UniverseRelationalOperator, value: BigInteger): void
+	addCumulativeConstantLengthsVariableHeights(origins: List<String>, lengths: List<BigInteger>, ends: List<String>, heights: List<String>, operator: UniverseRelationalOperator, value: BigInteger): void
+	addCumulativeConstantLengthsVariableHeights(origins: List<String>, lengths: List<BigInteger>, heights: List<String>, operator: UniverseRelationalOperator, value: String): void
+	addCumulativeConstantLengthsVariableHeights(origins: List<String>, lengths: List<BigInteger>, ends: List<String>, heights: List<String>, operator: UniverseRelationalOperator, value: String): void
+	addCumulativeVariableLengthsConstantHeights(origins: List<String>, lengths: List<String>, heights: List<BigInteger>, operator: UniverseRelationalOperator, value: BigInteger): void
+	addCumulativeVariableLengthsConstantHeights(origins: List<String>, lengths: List<String>, ends: List<String>, heights: List<BigInteger>, operator: UniverseRelationalOperator, value: BigInteger): void
+	addCumulativeVariableLengthsConstantHeights(origins: List<String>, lengths: List<String>, heights: List<BigInteger>, operator: UniverseRelationalOperator, value: String): void
+	addCumulativeVariableLengthsConstantHeights(origins: List<String>, lengths: List<String>, ends: List<String>, heights: List<BigInteger>, operator: UniverseRelationalOperator, value: String): void
+	addCumulativeVariableLengthsVariableHeights(origins: List<String>, lengths: List<String>, heights: List<String>, operator: UniverseRelationalOperator, value: BigInteger): void
+	addCumulativeVariableLengthsVariableHeights(origins: List<String>, lengths: List<String>, ends: List<String>, heights: List<String>, operator: UniverseRelationalOperator, value: BigInteger): void
+	addCumulativeVariableLengthsVariableHeights(origins: List<String>, lengths: List<String>, heights: List<String>, operator: UniverseRelationalOperator, value: String): void
+	addCumulativeVariableLengthsVariableHeights(origins: List<String>, lengths: List<String>, ends: List<String>, heights: List<String>, operator: UniverseRelationalOperator, value: String): void
+	addElement(variables: List<String>, value: BigInteger): void
+	addElement(variables: List<String>, value: String): void
+	addElementConstantValues(values: List<BigInteger>, startIndex: int, index: String, value: BigInteger): void
+	addElementConstantValues(values: List<BigInteger>, startIndex: int, index: String, variable: String): void
+	addElement(variables: List<String>, startIndex: int, index: String, value: BigInteger): void
+	addElement(values: List<String>, startIndex: int, index: String, variable: String): void
+	addElementConstantMatrix(matrix: List<List<BigInteger>>, startRowIndex: int, rowIndex: String, startColIndex: int, colIndex: String, value: BigInteger): void
+	addElementConstantMatrix(matrix: List<List<BigInteger>>, startRowIndex: int, rowIndex: String, startColIndex: int, colIndex: String, value: String): void
+	addElementMatrix(matrix: List<List<String>>, startRowIndex: int, rowIndex: String, startColIndex: int, colIndex: String, value: BigInteger): void
+	addElementMatrix(matrix: List<List<String>>, startRowIndex: int, rowIndex: String, startColIndex: int, colIndex: String, value: String): void
+	addSupport(variable: String, allowedValues: List<BigInteger>): void
+	addSupport(variableTuple: List<String>, allowedValues: List<List<BigInteger>>): void
+	addConflicts(variable: String, forbiddenValues: List<BigInteger>): void
+	addConflicts(variableTuple: List<String>, forbiddenValues: List<List<BigInteger>>): void
+	addIntension(constr: IIntensionConstraint): void
+	addPrimitive(variable: String, operator: UniverseRelationalOperator, value: BigInteger): void
+	addPrimitive(variable: String, arithOp: UniverseArithmeticOperator, leftHandSide: BigInteger, relOp: UniverseRelationalOperator, rightHandSide: BigInteger): void
+	addPrimitive(variable: String, arithOp: UniverseArithmeticOperator, leftHandSide: String, relOp: UniverseRelationalOperator, rightHandSide: BigInteger): void
+	addPrimitive(variable: String, arithOp: UniverseArithmeticOperator, leftHandSide: BigInteger, relOp: UniverseRelationalOperator, rightHandSide: String): void
+	addPrimitive(variable: String, arithOp: UniverseArithmeticOperator, leftHandSide: String, relOp: UniverseRelationalOperator, rightHandSide: String): void
+	addPrimitive(arithOp: UniverseArithmeticOperator, variable: String, rightHandSide: String): void
+	addPrimitive(variable: String, operator: UniverseSetBelongingOperator, values: List<BigInteger>): void
+	addPrimitive(variable: String, operator: UniverseSetBelongingOperator, min: BigInteger, max: BigInteger): void
+	addMinimum(variables: List<String>, operator: UniverseRelationalOperator, value: BigInteger): void
+	addMinimum(variables: List<String>, operator: UniverseRelationalOperator, value: String): void
+	addMinimumIntension(intensionConstraints: List<IIntensionConstraint>, operator: UniverseRelationalOperator, value: BigInteger): void
+	addMinimumIntension(intensionConstraints: List<IIntensionConstraint>, operator: UniverseRelationalOperator, value: String): void
+	addMaximum(variables: List<String>, operator: UniverseRelationalOperator, value: BigInteger): void
+	addMaximum(variables: List<String>, operator: UniverseRelationalOperator, value: String): void
+	addMaximumIntension(intensionConstraints: List<IIntensionConstraint>, operator: UniverseRelationalOperator, value: BigInteger): void
+	addMaximumIntension(intensionConstraints: List<IIntensionConstraint>, operator: UniverseRelationalOperator, value: String): void
+	addNoOverlap(variables: List<String>, length: List<BigInteger>): void
+	addNoOverlap(variables: List<String>, length: List<BigInteger>, zeroIgnored: boolean): void
+	addNoOverlapVariableLength(variables: List<String>, length: List<String>): void
+	addNoOverlapVariableLength(variables: List<String>, length: List<String>, zeroIgnored: boolean): void
+	addMultiDimensionalNoOverlap(variables: List<List<String>>, length: List<List<BigInteger>>): void
+	addMultiDimensionalNoOverlap(variables: List<List<String>>, length: List<List<BigInteger>>, zeroIgnored: boolean): void
+	addMultiDimensionalNoOverlapVariableLength(variables: List<List<String>>, length: List<List<String>>): void
+	addMultiDimensionalNoOverlapVariableLength(variables: List<List<String>>, length: List<List<String>>, zeroIgnored: boolean): void
+	addNValues(variables: List<String>, operator: UniverseRelationalOperator, nb: BigInteger): void
+	addNValuesExcept(variables: List<String>, operator: UniverseRelationalOperator, nb: BigInteger, except: List<BigInteger>): void
+	addNValues(variables: List<String>, operator: UniverseRelationalOperator, nb: String): void
+	addNValuesExcept(variables: List<String>, operator: UniverseRelationalOperator, nb: String, except: List<BigInteger>): void
+	addNValuesIntension(expressions: List<IIntensionConstraint>, operator: UniverseRelationalOperator, nb: BigInteger): void
+	addNValuesIntension(expressions: List<IIntensionConstraint>, operator: UniverseRelationalOperator, nb: String): void
+	addOrdered(variables: List<String>, operator: UniverseRelationalOperator): void
+	addOrderedWithConstantLength(variables: List<String>, lengths: List<BigInteger>, operator: UniverseRelationalOperator): void
+	addOrderedWithVariableLength(variables: List<String>, lengths: List<String>, operator: UniverseRelationalOperator): void
+	addAllEqual(variables: List<String>): void
+	addAllEqualIntension(expressions: List<IIntensionConstraint>): void
+	addNotAllEqual(variables: List<String>): void
+	addLex(tuples: List<List<String>>, operator: UniverseRelationalOperator): void
+	addLexMatrix(matrix: List<List<String>>, operator: UniverseRelationalOperator): void
+	addSum(variables: List<String>, operator: UniverseRelationalOperator, value: BigInteger): void
+	addSum(variables: List<String>, coefficients: List<BigInteger>, operator: UniverseRelationalOperator, value: BigInteger): void
+	addSum(variables: List<String>, operator: UniverseRelationalOperator, rightVariable: String): void
+	addSum(variables: List<String>, coefficients: List<BigInteger>, operator: UniverseRelationalOperator, rightVariable: String): void
+	addSumIntension(intensionConstraints: List<IIntensionConstraint>, operator: UniverseRelationalOperator, value: BigInteger): void
+	addSumIntension(intensionConstraints: List<IIntensionConstraint>, coefficients: List<BigInteger>, operator: UniverseRelationalOperator, value: BigInteger): void
+	addSumIntension(intensionConstraints: List<IIntensionConstraint>, operator: UniverseRelationalOperator, rightVariable: String): void
+	addSumIntension(intensionConstraints: List<IIntensionConstraint>, coefficients: List<BigInteger>, operator: UniverseRelationalOperator, rightVariable: String): void
+	addSumWithVariableCoefficients(variables: List<String>, coefficients: List<String>, operator: UniverseRelationalOperator, value: BigInteger): void
+	addSumWithVariableCoefficients(variables: List<String>, coefficients: List<String>, operator: UniverseRelationalOperator, rightVariable: String): void
+	addSumIntensionWithVariableCoefficients(intensionConstraints: List<IIntensionConstraint>, coefficients: List<String>, operator: UniverseRelationalOperator, value: BigInteger): void
+	addSumIntensionWithVariableCoefficients(intensionConstraints: List<IIntensionConstraint>, coefficients: List<String>, operator: UniverseRelationalOperator, rightVariable: String): void
+	minimizeVariable(variable: String): void
+	maximizeVariable(variable: String): void
+	minimizeExpression(expression: IIntensionConstraint): void
+	maximizeExpression(expression: IIntensionConstraint): void
+	minimizeSum(variables: List<String>): void
+	minimizeSum(variables: List<String>, coefficients: List<BigInteger>): void
+	minimizeExpressionSum(expressions: List<IIntensionConstraint>): void
+	minimizeExpressionSum(expressions: List<IIntensionConstraint>, coefficients: List<BigInteger>): void
+	maximizeSum(variables: List<String>): void
+	maximizeSum(variables: List<String>, coefficients: List<BigInteger>): void
+	maximizeExpressionSum(expressions: List<IIntensionConstraint>): void
+	maximizeExpressionSum(expressions: List<IIntensionConstraint>, coefficients: List<BigInteger>): void
+	minimizeProduct(variables: List<String>): void
+	minimizeProduct(variables: List<String>, coefficients: List<BigInteger>): void
+	minimizeExpressionProduct(expressions: List<IIntensionConstraint>): void
+	minimizeExpressionProduct(expressions: List<IIntensionConstraint>, coefficients: List<BigInteger>): void
+	maximizeProduct(variables: List<String>): void
+	maximizeProduct(variables: List<String>, coefficients: List<BigInteger>): void
+	maximizeExpressionProduct(expressions: List<IIntensionConstraint>): void
+	maximizeExpressionProduct(expressions: List<IIntensionConstraint>, coefficients: List<BigInteger>): void
+	minimizeMinimum(variables: List<String>): void
+	minimizeMinimum(variables: List<String>, coefficients: List<BigInteger>): void
+	minimizeExpressionMinimum(expressions: List<IIntensionConstraint>): void
+	minimizeExpressionMinimum(expressions: List<IIntensionConstraint>, coefficients: List<BigInteger>): void
+	maximizeMinimum(variables: List<String>): void
+	maximizeMinimum(variables: List<String>, coefficients: List<BigInteger>): void
+	maximizeExpressionMinimum(expressions: List<IIntensionConstraint>): void
+	maximizeExpressionMinimum(expressions: List<IIntensionConstraint>, coefficients: List<BigInteger>): void
+	minimizeMaximum(variables: List<String>): void
+	minimizeMaximum(variables: List<String>, coefficients: List<BigInteger>): void
+	minimizeExpressionMaximum(expressions: List<IIntensionConstraint>): void
+	minimizeExpressionMaximum(expressions: List<IIntensionConstraint>, coefficients: List<BigInteger>): void
+	maximizeMaximum(variables: List<String>): void
+	maximizeMaximum(variables: List<String>, coefficients: List<BigInteger>): void
+	maximizeExpressionMaximum(expressions: List<IIntensionConstraint>): void
+	maximizeExpressionMaximum(expressions: List<IIntensionConstraint>, coefficients: List<BigInteger>): void
+	minimizeNValues(variables: List<String>): void
+	minimizeNValues(variables: List<String>, coefficients: List<BigInteger>): void
+	minimizeExpressionNValues(expressions: List<IIntensionConstraint>): void
+	minimizeExpressionNValues(expressions: List<IIntensionConstraint>, coefficients: List<BigInteger>): void
+	maximizeNValues(variables: List<String>): void
+	maximizeNValues(variables: List<String>, coefficients: List<BigInteger>): void
+	maximizeExpressionNValues(expressions: List<IIntensionConstraint>): void
+	maximizeExpressionNValues(expressions: List<IIntensionConstraint>, coefficients: List<BigInteger>): void
+	decisionVariables(variables: List<String>): void
+}
+interface IUniversePseudoBooleanSolver {
+}
+IUniversePseudoBooleanSolver <|-- IUniverseCSPSolver
+interface IUniversePseudoBooleanSolver [[java:fr.univartois.cril.juniverse.pb.IUniversePseudoBooleanSolver]] {
+	addPseudoBoolean(lits: List<Integer>, coeffs: List<BigInteger>, moreThan: boolean, d: BigInteger): void
+	addAtMost(literals: List<Integer>, coeffs: List<Integer>, degree: int): void
+	addAtMost(literals: List<Integer>, coeffs: List<BigInteger>, degree: BigInteger): void
+	addAtLeast(literals: List<Integer>, coeffs: List<Integer>, degree: int): void
+	addAtLeast(literals: List<Integer>, coeffs: List<BigInteger>, degree: BigInteger): void
+	addExactly(literals: List<Integer>, coeffs: List<Integer>, weight: int): void
+	addExactly(literals: List<Integer>, coeffs: List<BigInteger>, weight: BigInteger): void
+}
+interface IUniverseSatSolver {
+}
+IUniverseSatSolver <|-- IUniversePseudoBooleanSolver
+interface IUniverseSatSolver [[java:fr.univartois.cril.juniverse.sat.IUniverseSatSolver]] {
+	addClause(literals: List<Integer>): void
+	addAllClauses(clauses: List<List<Integer>>): void
+	solveBoolean(assumptions: List<UniverseAssumption<Boolean>>): UniverseSolverResult
+	solve(assumptions: List<UniverseAssumption<BigInteger>>): UniverseSolverResult
+}
+interface IUniverseSolver {
+}
+IUniverseSolver <|-- IUniverseSatSolver
+@enduml
