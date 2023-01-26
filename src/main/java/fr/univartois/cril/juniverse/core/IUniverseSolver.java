@@ -140,5 +140,7 @@ public interface IUniverseSolver {
      * @return The solution found by this solver.
      */
     Map<String, BigInteger> mapSolution();
+    
+	Map<String, BigInteger> mapSolution(boolean excludeAux);
 
 }
