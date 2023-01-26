@@ -1519,7 +1519,8 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
 	 *
 	 * @param variables The variables appearing in the constraint.
 	 * @param operator  The relational operator used in the constraint.
-	 * @param value     The value of the right-hand side of the constraint.
+	 * @param min       The minimum value of the range.
+	 * @param max       The maximum value of the range.
 	 *
 	 * @throws UniverseContradictionException If adding the constraint results in a
 	 *                                        trivial inconsistency.
@@ -1533,19 +1534,21 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
 	 * @param coefficients The coefficients of the variables appearing in the
 	 *                     constraint.
 	 * @param operator     The relational operator used in the constraint.
-	 * @param value        The value of the right-hand side of the constraint.
+	 * @param min          The minimum value of the range.
+	 * @param max          The maximum value of the range..
 	 *
 	 * @throws UniverseContradictionException If adding the constraint results in a
 	 *                                        trivial inconsistency.
 	 */
-	void addSum(List<String> variables, List<BigInteger> coefficients, UniverseSetBelongingOperator operator, BigInteger min, BigInteger max);
+	void addSum(List<String> variables, List<BigInteger> coefficients, UniverseSetBelongingOperator operator,
+			BigInteger min, BigInteger max);
 
 	/**
 	 * Notifies this listener that a {@code sum} constraint is to be added.
 	 *
-	 * @param variables     The variables appearing in the constraint.
-	 * @param operator      The relational operator used in the constraint.
-	 * @param rightVariable The variable on the right-hand side of the constraint.
+	 * @param variables The variables appearing in the constraint.
+	 * @param operator  The relational operator used in the constraint.
+	 * @param values    The set of values.
 	 *
 	 * @throws UniverseContradictionException If adding the constraint results in a
 	 *                                        trivial inconsistency.
@@ -1555,58 +1558,31 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
 	/**
 	 * Notifies this listener that a {@code sum} constraint is to be added.
 	 *
-	 * @param variables     The variables appearing in the constraint.
-	 * @param coefficients  The coefficients of the variables appearing in the
-	 *                      constraint.
-	 * @param operator      The relational operator used in the constraint.
-	 * @param rightVariable The variable on the right-hand side of the constraint.
+	 * @param variables    The variables appearing in the constraint.
+	 * @param coefficients The coefficients of the variables appearing in the
+	 *                     constraint.
+	 * @param operator     The relational operator used in the constraint.
+	 * @param values       The set of values.
 	 *
 	 * @throws UniverseContradictionException If adding the constraint results in a
 	 *                                        trivial inconsistency.
 	 */
-	void addSum(List<String> variables, List<BigInteger> coefficients, UniverseSetBelongingOperator operator, List<BigInteger> values);
+	void addSum(List<String> variables, List<BigInteger> coefficients, UniverseSetBelongingOperator operator,
+			List<BigInteger> values);
 
 	/**
 	 * Notifies this listener that a {@code sum} constraint is to be added.
 	 *
 	 * @param intensionConstraints The intension constraints to compute the sum of.
 	 * @param operator             The relational operator used in the constraint.
-	 * @param value                The value of the right-hand side of the
-	 *                             constraint.
+	 * @param min                  The minimum value of the range.
+	 * @param max                  The maximum value of the range.
 	 *
 	 * @throws UniverseContradictionException If adding the constraint results in a
 	 *                                        trivial inconsistency.
 	 */
-	void addSumIntension(List<IIntensionConstraint> intensionConstraints, UniverseSetBelongingOperator operator, BigInteger min, BigInteger max);
-
-	/**
-	 * Notifies this listener that a {@code sum} constraint is to be added.
-	 *
-	 * @param intensionConstraints The intension constraints to compute the sum of.
-	 * @param coefficients         The coefficients of the variables appearing in
-	 *                             the constraint.
-	 * @param operator             The relational operator used in the constraint.
-	 * @param value                The value of the right-hand side of the
-	 *                             constraint.
-	 *
-	 * @throws UniverseContradictionException If adding the constraint results in a
-	 *                                        trivial inconsistency.
-	 */
-	void addSumIntension(List<IIntensionConstraint> intensionConstraints, List<BigInteger> coefficients,
-	        UniverseSetBelongingOperator operator, BigInteger min, BigInteger max);
-
-	/**
-	 * Notifies this listener that a {@code sum} constraint is to be added.
-	 *
-	 * @param intensionConstraints The intension constraints to compute the sum of.
-	 * @param operator             The relational operator used in the constraint.
-	 * @param rightVariable        The variable on the right-hand side of the
-	 *                             constraint.
-	 *
-	 * @throws UniverseContradictionException If adding the constraint results in a
-	 *                                        trivial inconsistency.
-	 */
-	void addSumIntension(List<IIntensionConstraint> intensionConstraints, UniverseSetBelongingOperator operator, List<BigInteger> values);
+	void addSumIntension(List<IIntensionConstraint> intensionConstraints, UniverseSetBelongingOperator operator,
+			BigInteger min, BigInteger max);
 
 	/**
 	 * Notifies this listener that a {@code sum} constraint is to be added.
@@ -1615,14 +1591,42 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
 	 * @param coefficients         The coefficients of the variables appearing in
 	 *                             the constraint.
 	 * @param operator             The relational operator used in the constraint.
-	 * @param rightVariable        The variable on the right-hand side of the
-	 *                             constraint.
+	 * @param min                  The minimum value of the range.
+	 * @param max                  The maximum value of the range.
 	 *
 	 * @throws UniverseContradictionException If adding the constraint results in a
 	 *                                        trivial inconsistency.
 	 */
 	void addSumIntension(List<IIntensionConstraint> intensionConstraints, List<BigInteger> coefficients,
-	        UniverseSetBelongingOperator operator, List<BigInteger> values);
+			UniverseSetBelongingOperator operator, BigInteger min, BigInteger max);
+
+	/**
+	 * Notifies this listener that a {@code sum} constraint is to be added.
+	 *
+	 * @param intensionConstraints The intension constraints to compute the sum of.
+	 * @param operator             The relational operator used in the constraint.
+	 * @param values               The set of values
+	 *
+	 * @throws UniverseContradictionException If adding the constraint results in a
+	 *                                        trivial inconsistency.
+	 */
+	void addSumIntension(List<IIntensionConstraint> intensionConstraints, UniverseSetBelongingOperator operator,
+			List<BigInteger> values);
+
+	/**
+	 * Notifies this listener that a {@code sum} constraint is to be added.
+	 *
+	 * @param intensionConstraints The intension constraints to compute the sum of.
+	 * @param coefficients         The coefficients of the variables appearing in
+	 *                             the constraint.
+	 * @param operator             The relational operator used in the constraint.
+	 * @param values               The set of values.
+	 *
+	 * @throws UniverseContradictionException If adding the constraint results in a
+	 *                                        trivial inconsistency.
+	 */
+	void addSumIntension(List<IIntensionConstraint> intensionConstraints, List<BigInteger> coefficients,
+			UniverseSetBelongingOperator operator, List<BigInteger> values);
 
 	/**
 	 * Notifies this listener that a {@code sum} constraint is to be added.
@@ -1631,28 +1635,29 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
 	 * @param coefficients The variables representing the coefficients of the
 	 *                     variables appearing in the constraint.
 	 * @param operator     The relational operator used in the constraint.
-	 * @param value        The value of the right-hand side of the constraint.
+	 * @param min          The minimum value of the range.
+	 * @param max          The maximum value of the range.
 	 *
 	 * @throws UniverseContradictionException If adding the constraint results in a
 	 *                                        trivial inconsistency.
 	 */
 	void addSumWithVariableCoefficients(List<String> variables, List<String> coefficients,
-	        UniverseSetBelongingOperator operator, BigInteger min, BigInteger max);
+			UniverseSetBelongingOperator operator, BigInteger min, BigInteger max);
 
 	/**
 	 * Notifies this listener that a {@code sum} constraint is to be added.
 	 *
-	 * @param variables     The variables appearing in the constraint.
-	 * @param coefficients  The variables representing the coefficients of the
-	 *                      variables appearing in the constraint.
-	 * @param operator      The relational operator used in the constraint.
-	 * @param rightVariable The variable on the right-hand side of the constraint.
+	 * @param variables    The variables appearing in the constraint.
+	 * @param coefficients The variables representing the coefficients of the
+	 *                     variables appearing in the constraint.
+	 * @param operator     The relational operator used in the constraint.
+	 * @param values       The set of values.
 	 *
 	 * @throws UniverseContradictionException If adding the constraint results in a
 	 *                                        trivial inconsistency.
 	 */
 	void addSumWithVariableCoefficients(List<String> variables, List<String> coefficients,
-	        UniverseSetBelongingOperator operator, List<BigInteger> values);
+			UniverseSetBelongingOperator operator, List<BigInteger> values);
 
 	/**
 	 * Notifies this listener that a {@code sum} constraint is to be added.
@@ -1661,8 +1666,8 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
 	 * @param coefficients         The variables representing the coefficients of
 	 *                             the variables appearing in the constraint.
 	 * @param operator             The relational operator used in the constraint.
-	 * @param value                The value of the right-hand side of the
-	 *                             constraint.
+	 * @param min                  The minimum value of the range.
+	 * @param max                  The maximum value of the range.
 	 *
 	 * @throws UniverseContradictionException If adding the constraint results in a
 	 *                                        trivial inconsistency.
@@ -1677,8 +1682,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
 	 * @param coefficients         The variables representing the coefficients of
 	 *                             the variables appearing in the constraint.
 	 * @param operator             The relational operator used in the constraint.
-	 * @param rightVariable        The variable on the right-hand side of the
-	 *                             constraint.
+	 * @param values               The set of values
 	 *
 	 * @throws UniverseContradictionException If adding the constraint results in a
 	 *                                        trivial inconsistency.
@@ -1686,188 +1690,182 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
 	void addSumIntensionWithVariableCoefficients(List<IIntensionConstraint> intensionConstraints,
 			List<String> coefficients, UniverseSetBelongingOperator operator, List<BigInteger> values);
 
-	
-	
 	/**
-     * Notifies this listener that a {@code sum} constraint is to be added.
-     *
-     * @param variables The variables appearing in the constraint.
-     * @param operator  The relational operator used in the constraint.
-     * @param value     The value of the right-hand side of the constraint.
-     *
-     * @throws UniverseContradictionException If adding the constraint results in a
-     *                                        trivial inconsistency.
-     */
-    void addSum(List<String> variables, UniverseRelationalOperator operator, BigInteger value);
+	 * Notifies this listener that a {@code sum} constraint is to be added.
+	 *
+	 * @param variables The variables appearing in the constraint.
+	 * @param operator  The relational operator used in the constraint.
+	 * @param value     The value of the right-hand side of the constraint.
+	 *
+	 * @throws UniverseContradictionException If adding the constraint results in a
+	 *                                        trivial inconsistency.
+	 */
+	void addSum(List<String> variables, UniverseRelationalOperator operator, BigInteger value);
 
-    /**
-     * Notifies this listener that a {@code sum} constraint is to be added.
-     *
-     * @param variables    The variables appearing in the constraint.
-     * @param coefficients The coefficients of the variables appearing in the
-     *                     constraint.
-     * @param operator     The relational operator used in the constraint.
-     * @param value        The value of the right-hand side of the constraint.
-     *
-     * @throws UniverseContradictionException If adding the constraint results in a
-     *                                        trivial inconsistency.
-     */
-    void addSum(List<String> variables, List<BigInteger> coefficients, UniverseRelationalOperator operator,
-            BigInteger value);
+	/**
+	 * Notifies this listener that a {@code sum} constraint is to be added.
+	 *
+	 * @param variables    The variables appearing in the constraint.
+	 * @param coefficients The coefficients of the variables appearing in the
+	 *                     constraint.
+	 * @param operator     The relational operator used in the constraint.
+	 * @param value        The value of the right-hand side of the constraint.
+	 *
+	 * @throws UniverseContradictionException If adding the constraint results in a
+	 *                                        trivial inconsistency.
+	 */
+	void addSum(List<String> variables, List<BigInteger> coefficients, UniverseRelationalOperator operator,
+			BigInteger value);
 
-    /**
-     * Notifies this listener that a {@code sum} constraint is to be added.
-     *
-     * @param variables     The variables appearing in the constraint.
-     * @param operator      The relational operator used in the constraint.
-     * @param rightVariable The variable on the right-hand side of the constraint.
-     *
-     * @throws UniverseContradictionException If adding the constraint results in a
-     *                                        trivial inconsistency.
-     */
-    void addSum(List<String> variables, UniverseRelationalOperator operator, String rightVariable);
+	/**
+	 * Notifies this listener that a {@code sum} constraint is to be added.
+	 *
+	 * @param variables     The variables appearing in the constraint.
+	 * @param operator      The relational operator used in the constraint.
+	 * @param rightVariable The variable on the right-hand side of the constraint.
+	 *
+	 * @throws UniverseContradictionException If adding the constraint results in a
+	 *                                        trivial inconsistency.
+	 */
+	void addSum(List<String> variables, UniverseRelationalOperator operator, String rightVariable);
 
-    /**
-     * Notifies this listener that a {@code sum} constraint is to be added.
-     *
-     * @param variables     The variables appearing in the constraint.
-     * @param coefficients  The coefficients of the variables appearing in the
-     *                      constraint.
-     * @param operator      The relational operator used in the constraint.
-     * @param rightVariable The variable on the right-hand side of the constraint.
-     *
-     * @throws UniverseContradictionException If adding the constraint results in a
-     *                                        trivial inconsistency.
-     */
-    void addSum(List<String> variables, List<BigInteger> coefficients, UniverseRelationalOperator operator,
-            String rightVariable);
+	/**
+	 * Notifies this listener that a {@code sum} constraint is to be added.
+	 *
+	 * @param variables     The variables appearing in the constraint.
+	 * @param coefficients  The coefficients of the variables appearing in the
+	 *                      constraint.
+	 * @param operator      The relational operator used in the constraint.
+	 * @param rightVariable The variable on the right-hand side of the constraint.
+	 *
+	 * @throws UniverseContradictionException If adding the constraint results in a
+	 *                                        trivial inconsistency.
+	 */
+	void addSum(List<String> variables, List<BigInteger> coefficients, UniverseRelationalOperator operator,
+			String rightVariable);
 
-    /**
-     * Notifies this listener that a {@code sum} constraint is to be added.
-     *
-     * @param intensionConstraints The intension constraints to compute the sum of.
-     * @param operator             The relational operator used in the constraint.
-     * @param value                The value of the right-hand side of the
-     *                             constraint.
-     *
-     * @throws UniverseContradictionException If adding the constraint results in a
-     *                                        trivial inconsistency.
-     */
-    void addSumIntension(List<IIntensionConstraint> intensionConstraints, UniverseRelationalOperator operator,
-            BigInteger value);
+	/**
+	 * Notifies this listener that a {@code sum} constraint is to be added.
+	 *
+	 * @param intensionConstraints The intension constraints to compute the sum of.
+	 * @param operator             The relational operator used in the constraint.
+	 * @param value                The value of the right-hand side of the
+	 *                             constraint.
+	 *
+	 * @throws UniverseContradictionException If adding the constraint results in a
+	 *                                        trivial inconsistency.
+	 */
+	void addSumIntension(List<IIntensionConstraint> intensionConstraints, UniverseRelationalOperator operator,
+			BigInteger value);
 
-    /**
-     * Notifies this listener that a {@code sum} constraint is to be added.
-     *
-     * @param intensionConstraints The intension constraints to compute the sum of.
-     * @param coefficients         The coefficients of the variables appearing in
-     *                             the constraint.
-     * @param operator             The relational operator used in the constraint.
-     * @param value                The value of the right-hand side of the
-     *                             constraint.
-     *
-     * @throws UniverseContradictionException If adding the constraint results in a
-     *                                        trivial inconsistency.
-     */
-    void addSumIntension(List<IIntensionConstraint> intensionConstraints, List<BigInteger> coefficients,
-            UniverseRelationalOperator operator, BigInteger value);
+	/**
+	 * Notifies this listener that a {@code sum} constraint is to be added.
+	 *
+	 * @param intensionConstraints The intension constraints to compute the sum of.
+	 * @param coefficients         The coefficients of the variables appearing in
+	 *                             the constraint.
+	 * @param operator             The relational operator used in the constraint.
+	 * @param value                The value of the right-hand side of the
+	 *                             constraint.
+	 *
+	 * @throws UniverseContradictionException If adding the constraint results in a
+	 *                                        trivial inconsistency.
+	 */
+	void addSumIntension(List<IIntensionConstraint> intensionConstraints, List<BigInteger> coefficients,
+			UniverseRelationalOperator operator, BigInteger value);
 
-    /**
-     * Notifies this listener that a {@code sum} constraint is to be added.
-     *
-     * @param intensionConstraints The intension constraints to compute the sum of.
-     * @param operator             The relational operator used in the constraint.
-     * @param rightVariable        The variable on the right-hand side of the
-     *                             constraint.
-     *
-     * @throws UniverseContradictionException If adding the constraint results in a
-     *                                        trivial inconsistency.
-     */
-    void addSumIntension(List<IIntensionConstraint> intensionConstraints, UniverseRelationalOperator operator,
-            String rightVariable);
+	/**
+	 * Notifies this listener that a {@code sum} constraint is to be added.
+	 *
+	 * @param intensionConstraints The intension constraints to compute the sum of.
+	 * @param operator             The relational operator used in the constraint.
+	 * @param rightVariable        The variable on the right-hand side of the
+	 *                             constraint.
+	 *
+	 * @throws UniverseContradictionException If adding the constraint results in a
+	 *                                        trivial inconsistency.
+	 */
+	void addSumIntension(List<IIntensionConstraint> intensionConstraints, UniverseRelationalOperator operator,
+			String rightVariable);
 
-    /**
-     * Notifies this listener that a {@code sum} constraint is to be added.
-     *
-     * @param intensionConstraints The intension constraints to compute the sum of.
-     * @param coefficients         The coefficients of the variables appearing in
-     *                             the constraint.
-     * @param operator             The relational operator used in the constraint.
-     * @param rightVariable        The variable on the right-hand side of the
-     *                             constraint.
-     *
-     * @throws UniverseContradictionException If adding the constraint results in a
-     *                                        trivial inconsistency.
-     */
-    void addSumIntension(List<IIntensionConstraint> intensionConstraints, List<BigInteger> coefficients,
-            UniverseRelationalOperator operator, String rightVariable);
+	/**
+	 * Notifies this listener that a {@code sum} constraint is to be added.
+	 *
+	 * @param intensionConstraints The intension constraints to compute the sum of.
+	 * @param coefficients         The coefficients of the variables appearing in
+	 *                             the constraint.
+	 * @param operator             The relational operator used in the constraint.
+	 * @param rightVariable        The variable on the right-hand side of the
+	 *                             constraint.
+	 *
+	 * @throws UniverseContradictionException If adding the constraint results in a
+	 *                                        trivial inconsistency.
+	 */
+	void addSumIntension(List<IIntensionConstraint> intensionConstraints, List<BigInteger> coefficients,
+			UniverseRelationalOperator operator, String rightVariable);
 
-    /**
-     * Notifies this listener that a {@code sum} constraint is to be added.
-     *
-     * @param variables    The variables appearing in the constraint.
-     * @param coefficients The variables representing the coefficients of the
-     *                     variables appearing in the constraint.
-     * @param operator     The relational operator used in the constraint.
-     * @param value        The value of the right-hand side of the constraint.
-     *
-     * @throws UniverseContradictionException If adding the constraint results in a
-     *                                        trivial inconsistency.
-     */
-    void addSumWithVariableCoefficients(List<String> variables, List<String> coefficients,
-            UniverseRelationalOperator operator, BigInteger value);
+	/**
+	 * Notifies this listener that a {@code sum} constraint is to be added.
+	 *
+	 * @param variables    The variables appearing in the constraint.
+	 * @param coefficients The variables representing the coefficients of the
+	 *                     variables appearing in the constraint.
+	 * @param operator     The relational operator used in the constraint.
+	 * @param value        The value of the right-hand side of the constraint.
+	 *
+	 * @throws UniverseContradictionException If adding the constraint results in a
+	 *                                        trivial inconsistency.
+	 */
+	void addSumWithVariableCoefficients(List<String> variables, List<String> coefficients,
+			UniverseRelationalOperator operator, BigInteger value);
 
-    /**
-     * Notifies this listener that a {@code sum} constraint is to be added.
-     *
-     * @param variables     The variables appearing in the constraint.
-     * @param coefficients  The variables representing the coefficients of the
-     *                      variables appearing in the constraint.
-     * @param operator      The relational operator used in the constraint.
-     * @param rightVariable The variable on the right-hand side of the constraint.
-     *
-     * @throws UniverseContradictionException If adding the constraint results in a
-     *                                        trivial inconsistency.
-     */
-    void addSumWithVariableCoefficients(List<String> variables, List<String> coefficients,
-            UniverseRelationalOperator operator, String rightVariable);
+	/**
+	 * Notifies this listener that a {@code sum} constraint is to be added.
+	 *
+	 * @param variables     The variables appearing in the constraint.
+	 * @param coefficients  The variables representing the coefficients of the
+	 *                      variables appearing in the constraint.
+	 * @param operator      The relational operator used in the constraint.
+	 * @param rightVariable The variable on the right-hand side of the constraint.
+	 *
+	 * @throws UniverseContradictionException If adding the constraint results in a
+	 *                                        trivial inconsistency.
+	 */
+	void addSumWithVariableCoefficients(List<String> variables, List<String> coefficients,
+			UniverseRelationalOperator operator, String rightVariable);
 
-    /**
-     * Notifies this listener that a {@code sum} constraint is to be added.
-     *
-     * @param intensionConstraints The intension constraints to compute the sum of.
-     * @param coefficients         The variables representing the coefficients of
-     *                             the variables appearing in the constraint.
-     * @param operator             The relational operator used in the constraint.
-     * @param value                The value of the right-hand side of the
-     *                             constraint.
-     *
-     * @throws UniverseContradictionException If adding the constraint results in a
-     *                                        trivial inconsistency.
-     */
-    void addSumIntensionWithVariableCoefficients(List<IIntensionConstraint> intensionConstraints,
-            List<String> coefficients, UniverseRelationalOperator operator, BigInteger value);
+	/**
+	 * Notifies this listener that a {@code sum} constraint is to be added.
+	 *
+	 * @param intensionConstraints The intension constraints to compute the sum of.
+	 * @param coefficients         The variables representing the coefficients of
+	 *                             the variables appearing in the constraint.
+	 * @param operator             The relational operator used in the constraint.
+	 * @param value                The value of the right-hand side of the
+	 *                             constraint.
+	 *
+	 * @throws UniverseContradictionException If adding the constraint results in a
+	 *                                        trivial inconsistency.
+	 */
+	void addSumIntensionWithVariableCoefficients(List<IIntensionConstraint> intensionConstraints,
+			List<String> coefficients, UniverseRelationalOperator operator, BigInteger value);
 
-    /**
-     * Notifies this listener that a {@code sum} constraint is to be added.
-     *
-     * @param intensionConstraints The intension constraints to compute the sum of.
-     * @param coefficients         The variables representing the coefficients of
-     *                             the variables appearing in the constraint.
-     * @param operator             The relational operator used in the constraint.
-     * @param rightVariable        The variable on the right-hand side of the
-     *                             constraint.
-     *
-     * @throws UniverseContradictionException If adding the constraint results in a
-     *                                        trivial inconsistency.
-     */
-    void addSumIntensionWithVariableCoefficients(List<IIntensionConstraint> intensionConstraints,
-            List<String> coefficients, UniverseRelationalOperator operator, String rightVariable);
+	/**
+	 * Notifies this listener that a {@code sum} constraint is to be added.
+	 *
+	 * @param intensionConstraints The intension constraints to compute the sum of.
+	 * @param coefficients         The variables representing the coefficients of
+	 *                             the variables appearing in the constraint.
+	 * @param operator             The relational operator used in the constraint.
+	 * @param rightVariable        The variable on the right-hand side of the
+	 *                             constraint.
+	 *
+	 * @throws UniverseContradictionException If adding the constraint results in a
+	 *                                        trivial inconsistency.
+	 */
+	void addSumIntensionWithVariableCoefficients(List<IIntensionConstraint> intensionConstraints,
+			List<String> coefficients, UniverseRelationalOperator operator, String rightVariable);
 
-	
-	
-	
-	
 	/**
 	 * Notifies this listener that an objective function is to be added to minimize
 	 * the value assigned to a variable.
@@ -2239,6 +2237,6 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
 	 * @param coefficients The coefficients of the expressions.
 	 */
 	void maximizeExpressionNValues(List<IIntensionConstraint> expressions, List<BigInteger> coefficients);
-	
+
 	void decisionVariables(List<String> variables);
 }
