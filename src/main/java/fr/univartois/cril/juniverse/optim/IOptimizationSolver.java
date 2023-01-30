@@ -35,5 +35,6 @@ public interface IOptimizationSolver {
     void setUpperBound(BigInteger ub);
     void setBounds(BigInteger lb, BigInteger ub);
     BigInteger getCurrentBound();
+    boolean isMinimization();
 }
 
