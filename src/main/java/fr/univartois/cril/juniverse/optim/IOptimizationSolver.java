@@ -31,7 +31,9 @@ import java.math.BigInteger;
  * @version 0.1.0
  */
 public interface IOptimizationSolver {
+    BigInteger getLowerBound();
     void setLowerBound(BigInteger lb);
+    BigInteger getUpperBound();
     void setUpperBound(BigInteger ub);
     void setBounds(BigInteger lb, BigInteger ub);
     BigInteger getCurrentBound();
