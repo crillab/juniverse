@@ -93,6 +93,10 @@ public interface IUniverseSolver {
      * @param filename The name of the log file.
      */
     void setLogFile(String filename);
+    
+    
+    void loadInstance(String filename);
+    
 
     /**
      * Solves the problem associated to this solver.
