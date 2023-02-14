@@ -1926,17 +1926,17 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
     void addSumIntensionWithVariableCoefficients(List<IIntensionConstraint> intensionConstraints,
             List<String> coefficients, UniverseRelationalOperator operator, String rightVariable);
 
-    void addRegular(String id, List<String> list, List<UniverseTransition> transitions,
+    void addRegular(List<String> list, List<UniverseTransition> transitions,
             String startState, List<String> finalStates);
     
-    void addMDD(String id, List<String> list, List<UniverseTransition> transitions);
+    void addMDD(List<String> list, List<UniverseTransition> transitions);
 
 
-    void addCircuit(String id, List<String> list, int startIndex);
+    void addCircuit(List<String> list, int startIndex);
 
-    void addCircuit(String id, List<String> list, int startIndex, int size);
+    void addCircuit(List<String> list, int startIndex, int size);
 
-    void addCircuit(String id, List<String> list, int startIndex, String size);
+    void addCircuit(List<String> list, int startIndex, String size);
 
     /**
      * Notifies this listener that an objective function is to be added to minimize
