@@ -97,6 +97,8 @@ public interface IUniverseSolver {
     
     void loadInstance(String filename);
     
+    boolean isOptimization();
+    
 
     /**
      * Solves the problem associated to this solver.
