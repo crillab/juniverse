@@ -833,7 +833,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
      */
-    void addElement(List<String> variables, BigInteger value);
+    void addElement(List<String> variables, UniverseRelationalOperator operator, BigInteger value);
 
     /**
      * Notifies this listener that an {@code element} constraint is to be added.
@@ -845,7 +845,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
      */
-    void addElement(List<String> variables, String value);
+    void addElement(List<String> variables, UniverseRelationalOperator operator, String value);
 
     /**
      * Notifies this listener that an {@code element} constraint is to be added.
@@ -858,7 +858,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
      */
-    void addElementConstantValues(List<BigInteger> values, int startIndex, String index,
+    void addElementConstantValues(List<BigInteger> values, int startIndex, String index, UniverseRelationalOperator operator,
             BigInteger value);
 
     /**
@@ -872,7 +872,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
      */
-    void addElementConstantValues(List<BigInteger> values, int startIndex, String index,
+    void addElementConstantValues(List<BigInteger> values, int startIndex, String index, UniverseRelationalOperator operator, 
             String variable);
 
     /**
@@ -886,7 +886,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
      */
-    void addElement(List<String> variables, int startIndex, String index, BigInteger value);
+    void addElement(List<String> variables, int startIndex, String index, UniverseRelationalOperator operator, BigInteger value);
 
     /**
      * Notifies this listener that an {@code element} constraint is to be added.
@@ -900,7 +900,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
      */
-    void addElement(List<String> values, int startIndex, String index, String variable);
+    void addElement(List<String> values, int startIndex, String index, UniverseRelationalOperator operator,  String variable);
 
     /**
      * Notifies this listener that an {@code element} constraint is to be added.
@@ -921,7 +921,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      */
     void addElementConstantMatrix(List<List<BigInteger>> matrix, int startRowIndex, String rowIndex,
             int startColIndex,
-            String colIndex, BigInteger value);
+            String colIndex, UniverseRelationalOperator operator, BigInteger value);
 
     /**
      * Notifies this listener that an {@code element} constraint is to be added.
@@ -943,7 +943,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      */
     void addElementConstantMatrix(List<List<BigInteger>> matrix, int startRowIndex, String rowIndex,
             int startColIndex,
-            String colIndex, String value);
+            String colIndex, UniverseRelationalOperator operator, String value);
 
     /**
      * Notifies this listener that an {@code element} constraint is to be added.
@@ -966,7 +966,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      */
     void addElementMatrix(List<List<String>> matrix, int startRowIndex, String rowIndex,
             int startColIndex,
-            String colIndex, BigInteger value);
+            String colIndex, UniverseRelationalOperator operator, BigInteger value);
 
     /**
      * Notifies this listener that an {@code element} constraint is to be added.
@@ -989,7 +989,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      */
     void addElementMatrix(List<List<String>> matrix, int startRowIndex, String rowIndex,
             int startColIndex,
-            String colIndex, String value);
+            String colIndex, UniverseRelationalOperator operator, String value);
 
     /**
      * Notifies this listener that an {@code extension} constraint describing the
