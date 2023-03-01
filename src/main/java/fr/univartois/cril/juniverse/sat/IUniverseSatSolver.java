@@ -82,7 +82,6 @@ public interface IUniverseSatSolver extends IUniverseSolver{
     default UniverseSolverResult solve(List<UniverseAssumption<BigInteger>> assumptions){
         List<UniverseAssumption<Boolean>> booleanAssumptions=new ArrayList<>(assumptions.size());
         for(var i:assumptions){
-            int id = i.getVariableId();
             BigInteger v = i.getValue();
             boolean e = i.isEqual();
 
@@ -90,7 +89,7 @@ public interface IUniverseSatSolver extends IUniverseSolver{
                 throw new IllegalArgumentException("Assumption must be boolean");
             }
 
-            booleanAssumptions.add(new UniverseAssumption<>(id,e,v.equals(BigInteger.ONE)));
+            booleanAssumptions.add(new UniverseAssumption<>(i.getVariableId(),e,v.equals(BigInteger.ONE)));
         }
         return solveBoolean(booleanAssumptions);
     }

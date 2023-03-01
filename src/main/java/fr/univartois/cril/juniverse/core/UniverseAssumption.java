@@ -34,7 +34,7 @@ public class UniverseAssumption<T> {
     /**
      * The variableId of the variable involved in this assumption.
      */
-    private int variableId;
+    private String variableId;
 
     /**
      * Indicates if this assumption represents a equality or not.
@@ -53,7 +53,7 @@ public class UniverseAssumption<T> {
      * @param equal Indicates if this assumption represents a equality or not.
      * @param value The value of the variable in this assumption.
      */
-    public UniverseAssumption(int variableId, boolean equal, T value) {
+    public UniverseAssumption(String variableId, boolean equal, T value) {
         super();
         this.variableId = variableId;
         this.equal = equal;
@@ -65,7 +65,7 @@ public class UniverseAssumption<T> {
      *
      * @return This UniverseAssumption's variableId.
      */
-    public int getVariableId() {
+    public String getVariableId() {
         return variableId;
     }
 
