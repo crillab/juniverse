@@ -45,7 +45,9 @@ public class SetIntensionConstraint implements IIntensionConstraint {
         this.set = set;
     }
 
-
+    public int size() {
+        return set.size();
+    }
 
     /*
      * (non-Javadoc)
