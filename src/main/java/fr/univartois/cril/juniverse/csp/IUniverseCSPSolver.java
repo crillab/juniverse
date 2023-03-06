@@ -858,7 +858,8 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
      */
-    void addElementConstantValues(List<BigInteger> values, int startIndex, String index, UniverseRelationalOperator operator,
+    void addElementConstantValues(List<BigInteger> values, int startIndex, String index,
+            UniverseRelationalOperator operator,
             BigInteger value);
 
     /**
@@ -872,7 +873,8 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
      */
-    void addElementConstantValues(List<BigInteger> values, int startIndex, String index, UniverseRelationalOperator operator, 
+    void addElementConstantValues(List<BigInteger> values, int startIndex, String index,
+            UniverseRelationalOperator operator,
             String variable);
 
     /**
@@ -886,7 +888,8 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
      */
-    void addElement(List<String> variables, int startIndex, String index, UniverseRelationalOperator operator, BigInteger value);
+    void addElement(List<String> variables, int startIndex, String index,
+            UniverseRelationalOperator operator, BigInteger value);
 
     /**
      * Notifies this listener that an {@code element} constraint is to be added.
@@ -900,7 +903,8 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
      */
-    void addElement(List<String> values, int startIndex, String index, UniverseRelationalOperator operator,  String variable);
+    void addElement(List<String> values, int startIndex, String index,
+            UniverseRelationalOperator operator, String variable);
 
     /**
      * Notifies this listener that an {@code element} constraint is to be added.
@@ -1333,6 +1337,14 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      */
     void addNoOverlapVariableLength(List<String> variables, List<String> length,
             boolean zeroIgnored);
+    // void buildCtrNoOverlap(String id, XVarInteger[] xs, XVarInteger[] ys, XVarInteger[]
+    // lx, int[] ly, boolean zeroIgnored);
+
+    void addBiDimensionalNoOverlap(List<String> xVariables, List<String> yVariables,
+            List<String> xLength, List<BigInteger> yLength);
+
+    void addBiDimensionalNoOverlap(List<String> xVariables, List<String> yVariables,
+            List<String> xLength, List<BigInteger> yLength, boolean zeroIgnored);
 
     /**
      * Notifies this listener that a {@code no-overlap} constraint is to be added.
@@ -1926,17 +1938,147 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
     void addSumIntensionWithVariableCoefficients(List<IIntensionConstraint> intensionConstraints,
             List<String> coefficients, UniverseRelationalOperator operator, String rightVariable);
 
+    /**
+     * 
+     * @param list
+     * @param transitions
+     * @param startState
+     * @param finalStates
+     */
     void addRegular(List<String> list, List<UniverseTransition> transitions,
             String startState, List<String> finalStates);
-    
+
+    /**
+     * 
+     * @param list
+     * @param transitions
+     */
     void addMDD(List<String> list, List<UniverseTransition> transitions);
 
-
+    /**
+     * 
+     * @param list
+     * @param startIndex
+     */
     void addCircuit(List<String> list, int startIndex);
 
+    /**
+     * 
+     * @param list
+     * @param startIndex
+     * @param size
+     */
     void addCircuit(List<String> list, int startIndex, int size);
 
+    /**
+     * 
+     * @param list
+     * @param startIndex
+     * @param size
+     */
     void addCircuit(List<String> list, int startIndex, String size);
+
+    /**
+     * 
+     * @param list
+     * @param balance
+     * @param edges
+     */
+    void addFlow(List<String> list, List<BigInteger> balance, List<List<BigInteger>> edges);
+
+    /**
+     * 
+     * @param list
+     * @param balance
+     * @param edges
+     * @param weights
+     * @param operator
+     * @param variable
+     */
+    void addFlow(List<String> list, List<BigInteger> balance, List<List<BigInteger>> edges,
+            List<BigInteger> weights, UniverseRelationalOperator operator, String variable);
+
+    /**
+     * 
+     * @param list
+     * @param balance
+     * @param edges
+     * @param weights
+     * @param operator
+     * @param value
+     */
+    void addFlow(List<String> list, List<BigInteger> balance, List<List<BigInteger>> edges,
+            List<BigInteger> weights, UniverseRelationalOperator operator, BigInteger value);
+
+    /**
+     * 
+     * @param list
+     * @param weights
+     * @param wOperator
+     * @param wVariable
+     * @param profits
+     * @param pOperator
+     * @param pVariable
+     */
+    void addKnapsack(List<String> list, List<BigInteger> weights,
+            UniverseRelationalOperator wOperator, String wVariable, List<BigInteger> profits,
+            UniverseRelationalOperator pOperator, String pVariable);
+
+    /**
+     * 
+     * @param list
+     * @param weights
+     * @param wOperator
+     * @param wVariable
+     * @param profits
+     * @param pOperator
+     * @param pValue
+     */
+    void addKnapsack(List<String> list, List<BigInteger> weights,
+            UniverseRelationalOperator wOperator, String wVariable, List<BigInteger> profits,
+            UniverseRelationalOperator pOperator, BigInteger pValue);
+
+    /**
+     * 
+     * @param list
+     * @param weights
+     * @param wOperator
+     * @param wValue
+     * @param profits
+     * @param pOperator
+     * @param pVariable
+     */
+    void addKnapsack(List<String> list, List<BigInteger> weights,
+            UniverseRelationalOperator wOperator, BigInteger wValue, List<BigInteger> profits,
+            UniverseRelationalOperator pOperator, String pVariable);
+
+    /**
+     * 
+     * @param list
+     * @param weights
+     * @param wOperator
+     * @param wValue
+     * @param profits
+     * @param pOperator
+     * @param pValue
+     */
+    void addKnapsack(List<String> list, List<BigInteger> weights,
+            UniverseRelationalOperator wOperator, BigInteger wValue, List<BigInteger> profits,
+            UniverseRelationalOperator pOperator, BigInteger pValue);
+
+    /**
+     * 
+     * @param list
+     */
+    void addPrecedence(List<String> list);
+
+    /**
+     * 
+     * @param list
+     * @param values
+     * @param covered
+     */
+    void addPrecedence(List<String> list, List<BigInteger> values, boolean covered);
 
     /**
      * Notifies this listener that an objective function is to be added to minimize

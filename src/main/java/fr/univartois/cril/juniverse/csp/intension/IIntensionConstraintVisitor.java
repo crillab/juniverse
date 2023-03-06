@@ -90,5 +90,9 @@ public interface IIntensionConstraintVisitor {
      */
     void visit(ConstantIntensionConstraint constant);
 
+    void visit(RangeIntensionConstraint rangeIntensionConstraint);
+
+    void visit(SetIntensionConstraint setIntensionConstraint);
+
 
 }
