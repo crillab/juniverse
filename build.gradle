@@ -19,7 +19,7 @@ def outDir = "${rootDir}/dist"
 def jarDir = "${outDir}/home"
 
 group = "fr.cril"
-version = "0.1.15"
+version = "0.1.16"
 
 ext.moduleName = "fr.univartois.cril.juniverse"
 
