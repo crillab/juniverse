@@ -1024,18 +1024,6 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
     /**
      * Notifies this listener that an {@code element} constraint is to be added.
      *
-     * @param matrix The matrix of values among which the value must appear.
-     * @param startRowIndex The index of the row starting from which the value must
-     *        appear.
-     * @param rowIndex The variable encoding the index of the row at which the
-     *        value appears.
-     * @param startColIndex The index of the column starting from which the value
-     *        must appear.
-     * @param colIndex The variable encoding the index of the column at which
-     *        the value appears.
-     * @param value The variable encoding the value to look for inside the
-     *        matrix.
-     *
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
      */
