@@ -838,10 +838,6 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
     /**
      * Notifies this listener that an {@code element} constraint is to be added.
      *
-     * @param variables The variables appearing in the constraint.
-     * @param value The variable encoding the value that must appear among the
-     *        variables.
-     *
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
      */
@@ -850,9 +846,6 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
     
     /**
      * Notifies this listener that an {@code element} constraint is to be added.
-     *
-     * @param variables The variables appearing in the constraint.
-     * @param value The value that must appear among the variables.
      *
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
@@ -905,10 +898,6 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
     /**
      * Notifies this listener that an {@code element} constraint is to be added.
      *
-     * @param values The values among which to look for the variable.
-     * @param startIndex The index at which to start looking for the variable.
-     * @param index The index at which the variable appears in the values.
-     * @param value The value to look for.
      *
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
@@ -920,10 +909,6 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
     /**
      * Notifies this listener that an {@code element} constraint is to be added.
      *
-     * @param values The values among which to look for the variable.
-     * @param startIndex The index at which to start looking for the variable.
-     * @param index The index at which the variable appears in the values.
-     * @param variable The variable whose value is to be looked for.
      *
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
@@ -966,11 +951,6 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
     /**
      * Notifies this listener that an {@code element} constraint is to be added.
      *
-     * @param variables The variables among which to look for the value.
-     * @param startIndex The index at which to start looking for the value.
-     * @param index The index at which the value appears in the variables.
-     * @param value The value to look for.
-     *
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
      */
@@ -979,13 +959,6 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
 
     /**
      * Notifies this listener that an {@code element} constraint is to be added.
-     *
-     * @param values The variables representing the values among which to look
-     *        for the variable.
-     * @param startIndex The index at which to start looking for the variable.
-     * @param index The index at which the variable appears in the values.
-     * @param variable The variable whose value is to be looked for.
-     *
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
      */
@@ -1040,17 +1013,6 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
     
     /**
      * Notifies this listener that an {@code element} constraint is to be added.
-     *
-     * @param matrix The matrix of values among which the value must appear.
-     * @param startRowIndex The index of the row starting from which the value must
-     *        appear.
-     * @param rowIndex The variable encoding the index of the row at which the
-     *        value appears.
-     * @param startColIndex The index of the column starting from which the value
-     *        must appear.
-     * @param colIndex The variable encoding the index of the column at which
-     *        the value appears.
-     * @param value The value to look for inside the matrix.
      *
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
@@ -1133,19 +1095,6 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
     /**
      * Notifies this listener that an {@code element} constraint is to be added.
      *
-     * @param matrix The matrix of variables among which the value must be
-     *        assigned.
-     * @param startRowIndex The index of the row starting from which the value must
-     *        appear.
-     * @param rowIndex The variable encoding the index of the row at which the
-     *        value appears.
-     * @param startColIndex The index of the column starting from which the value
-     *        must appear.
-     * @param colIndex The variable encoding the index of the column at which
-     *        the value appears.
-     * @param value The variable encoding the value to look for inside the
-     *        matrix.
-     *
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
      */
@@ -1155,19 +1104,6 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
 
     /**
      * Notifies this listener that an {@code element} constraint is to be added.
-     *
-     * @param matrix The matrix of variables among which the value must be
-     *        assigned.
-     * @param startRowIndex The index of the row starting from which the value must
-     *        appear.
-     * @param rowIndex The variable encoding the index of the row at which the
-     *        value appears.
-     * @param startColIndex The index of the column starting from which the value
-     *        must appear.
-     * @param colIndex The variable encoding the index of the column at which
-     *        the value appears.
-     * @param value The variable encoding the value to look for inside the
-     *        matrix.
      *
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
