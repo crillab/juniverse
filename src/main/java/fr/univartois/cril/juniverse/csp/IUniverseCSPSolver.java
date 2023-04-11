@@ -2575,7 +2575,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      *         trivial inconsistency.
      */
     void addMinimumIntension(List<IUniverseIntensionConstraint> intensionConstraints,
-            UniverseRelationalOperator operator, BigInteger min, BigInteger max);
+            UniverseSetBelongingOperator operator, BigInteger min, BigInteger max);
 
     /**
      * Adds a {@code minimum} constraint to this solver.
@@ -2588,7 +2588,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      *         trivial inconsistency.
      */
     void addMinimumIntension(List<IUniverseIntensionConstraint> intensionConstraints,
-            UniverseRelationalOperator operator, List<BigInteger> set);
+            UniverseSetBelongingOperator operator, List<BigInteger> set);
 
     /**
      * Adds a {@code minimum-arg} constraint to this solver.
@@ -2680,7 +2680,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      *         trivial inconsistency.
      */
     void addMinimumArgIntension(List<IUniverseIntensionConstraint> intensionConstraints,
-            UniverseRelationalOperator operator, BigInteger min, BigInteger max);
+            UniverseSetBelongingOperator operator, BigInteger min, BigInteger max);
 
     /**
      * Adds a {@code minimum-arg} constraint to this solver.
@@ -2693,7 +2693,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      *         trivial inconsistency.
      */
     void addMinimumArgIntension(List<IUniverseIntensionConstraint> intensionConstraints,
-            UniverseRelationalOperator operator, List<BigInteger> set);
+            UniverseSetBelongingOperator operator, List<BigInteger> set);
 
     /**
      * Adds a {@code maximum} constraint to this solver.
@@ -2845,7 +2845,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      *         trivial inconsistency.
      */
     void addMaximumIntension(List<IUniverseIntensionConstraint> intensionConstraints,
-            UniverseRelationalOperator operator, BigInteger min, BigInteger max);
+            UniverseSetBelongingOperator operator, BigInteger min, BigInteger max);
 
     /**
      * Adds a {@code maximum} constraint to this solver.
@@ -2858,7 +2858,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      *         trivial inconsistency.
      */
     void addMaximumIntension(List<IUniverseIntensionConstraint> intensionConstraints,
-            UniverseRelationalOperator operator, List<BigInteger> set);
+            UniverseSetBelongingOperator operator, List<BigInteger> set);
 
     /**
      * Adds a {@code maximum-arg} constraint to this solver.
@@ -2950,7 +2950,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      *         trivial inconsistency.
      */
     void addMaximumArgIntension(List<IUniverseIntensionConstraint> intensionConstraints,
-            UniverseRelationalOperator operator, BigInteger min, BigInteger max);
+            UniverseSetBelongingOperator operator, BigInteger min, BigInteger max);
 
     /**
      * Adds a {@code maximum-arg} constraint to this solver.
@@ -2963,7 +2963,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      *         trivial inconsistency.
      */
     void addMaximumArgIntension(List<IUniverseIntensionConstraint> intensionConstraints,
-            UniverseRelationalOperator operator, List<BigInteger> set);
+            UniverseSetBelongingOperator operator, List<BigInteger> set);
 
     /**
      * Adds a {@code no-overlap} constraint to this solver.
