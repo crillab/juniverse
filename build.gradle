@@ -1,5 +1,5 @@
 /*
- * This is the build.gradle configuration file of juniverse.
+ * This is the build.gradle configuration file of JUniverse.
  */
 
 /************************
@@ -19,13 +19,12 @@ def outDir = "${rootDir}/dist"
 def jarDir = "${outDir}/home"
 
 group = "fr.cril"
-version = "0.1.16"
+version = "0.2.0"
 
 ext.moduleName = "fr.univartois.cril.juniverse"
 
 sourceCompatibility = "10"
 targetCompatibility = "10"
-
 
 /*************************
  * Eclipse Configuration *
@@ -82,7 +81,6 @@ jacocoTestReport {
         xml.required = true
     }
 }
-
 
 /*************************
  * Javadoc Configuration *
@@ -166,14 +164,12 @@ publishing {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/crillab/juniverse")
             credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_ACTOR")
-                password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_TOKEN")
+                username = project.findProperty("gpr.user") ?: System.getProperty("GITHUB_ACTOR")
+                password = project.findProperty("gpr.key") ?: System.getProperty("GITHUB_TOKEN")
             }
         }
     }
 }
-
-
 
 /*************
  * Packaging *
@@ -184,7 +180,7 @@ tasks.withType(Jar) {
     destinationDirectory = file("${jarDir}")
 }
 
-// Removes the binary files of juniverse when cleaning.
+// Removes the binary files of JUniverse when cleaning.
 task removeBinaries(type: Delete) {
     delete "dist"
 }

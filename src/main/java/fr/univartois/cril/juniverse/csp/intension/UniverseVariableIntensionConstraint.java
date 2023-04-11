@@ -1,6 +1,6 @@
 /**
- * JUniverse, a solver interface.
- * Copyright (c) 2022 - Univ Artois, CNRS & Exakis Nelite.
+ * JUniverse, a universal solver interface.
+ * Copyright (c) 2022-2023 - Univ Artois, CNRS & Exakis Nelite.
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -15,21 +15,21 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.
- * If not, see {@link http://www.gnu.org/licenses}.
+ * If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.univartois.cril.juniverse.csp.intension;
 
 /**
- * The VariableIntensionConstraint is an {@link IIntensionConstraint} that represents a
- * variable.
+ * The UniverseVariableIntensionConstraint is an {@link IUniverseIntensionConstraint} that
+ * represents a variable.
  *
  * @author Thibault Falque
  * @author Romain Wallon
  *
- * @version 0.1.0
+ * @version 0.2.0
  */
-public final class VariableIntensionConstraint implements IIntensionConstraint {
+public final class UniverseVariableIntensionConstraint implements IUniverseIntensionConstraint {
 
     /**
      * The identifier of the variable.
@@ -37,11 +37,11 @@ public final class VariableIntensionConstraint implements IIntensionConstraint {
     private String identifier;
 
     /**
-     * Creates a new VariableIntensionConstraint.
+     * Creates a new UniverseVariableIntensionConstraint.
      *
      * @param identifier The identifier of the variable.
      */
-    public VariableIntensionConstraint(String identifier) {
+    public UniverseVariableIntensionConstraint(String identifier) {
         this.identifier = identifier;
     }
 
@@ -54,8 +54,14 @@ public final class VariableIntensionConstraint implements IIntensionConstraint {
         return identifier;
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.cril.juniverse.csp.intension.IIntensionConstraint#accept(fr.
+     * univartois.cril.juniverse.csp.intension.IIntensionConstraintVisitor)
+     */
     @Override
-    public void accept(IIntensionConstraintVisitor visitor) {
+    public void accept(IUniverseIntensionConstraintVisitor visitor) {
         visitor.visit(this);
     }
 

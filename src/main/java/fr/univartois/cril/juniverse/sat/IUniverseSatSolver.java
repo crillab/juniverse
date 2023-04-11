@@ -1,6 +1,6 @@
 /**
- * JUniverse, a solver interface.
- * Copyright (c) 2022 - Univ Artois, CNRS  Exakis Nelite.
+ * JUniverse, a universal solver interface.
+ * Copyright (c) 2022-2023 - Univ Artois, CNRS & Exakis Nelite.
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -15,10 +15,13 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.
- * If not, see {@link http://www.gnu.org/licenses}.
+ * If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.univartois.cril.juniverse.sat;
+
+import static java.math.BigInteger.ONE;
+import static java.math.BigInteger.ZERO;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -26,72 +29,90 @@ import java.util.List;
 
 import fr.univartois.cril.juniverse.core.IUniverseSolver;
 import fr.univartois.cril.juniverse.core.UniverseAssumption;
+import fr.univartois.cril.juniverse.core.UniverseContradictionException;
 import fr.univartois.cril.juniverse.core.UniverseSolverResult;
 
 /**
- * The IUniverseSatSolver
+ * The IUniverseSatSolver interface defines the contract for SAT solvers.
  *
  * @author Thibault Falque
  * @author Romain Wallon
  *
- * @version 0.1.0
+ * @version 0.2.0
  */
-public interface IUniverseSatSolver extends IUniverseSolver{
-    /**
-     * Create a clause from a set of literals The literals are represented by
-     * non null integers such that opposite literals a represented by opposite
-     * values. (classical Dimacs way of representing literals).
-     *
-     * @param literals
-     *            a set of literals
-     */
-     void addClause( List<Integer> literals);
+public interface IUniverseSatSolver extends IUniverseSolver {
 
     /**
-     * Create clauses from a set of set of literals. This is convenient to
-     * create in a single call all the clauses.
-     * It is mainly a loop to addClause().
+     * Creates a clause from a set of literals.
+     * The literals are represented by non-null integers such that opposite literals are
+     * represented by opposite values (using the classical DIMACS way of representing
+     * literals).
      *
-     * @param clauses
-     *            a vector of set (VecInt) of literals in the dimacs format. The
-     *            vector can be reused since the solver is not supposed to keep
-     *            a reference to that vector.
+     * @param literals The literals of the clause to add.
+     *
+     * @throws UniverseContradictionException If the clause to add is inconsistent.
      */
-     default void addAllClauses( List<List<Integer>> clauses){
-        for(var v:clauses){
+    void addClause(List<Integer> literals);
+
+    /**
+     * Creates clauses from a set of set of literals.
+     * This is convenient to create in a single call all the clauses.
+     * It is mainly a loop to {@link #addClause(List)}.
+     *
+     * @param clauses A list of list of literals in the DIMACS format.
+     *
+     * @throws UniverseContradictionException If one of the clauses to add is inconsistent.
+     *
+     * @see #addClause(List)
+     */
+    default void addAllClauses(List<List<Integer>> clauses) {
+        for (var v : clauses) {
             addClause(v);
         }
     }
 
-     /**
-      * Solves the problem associated to this solver.
-      *
-      * @param assumptions The assumptions to consider when solving.
-      *
-      * @return The outcome of the search conducted by the solver.
-      */
-     UniverseSolverResult solveBoolean(List<UniverseAssumption<Boolean>> assumptions);
+    /**
+     * Solves the problem associated to this solver.
+     *
+     * @param assumptions The assumptions to consider when solving (as a set of literals).
+     *
+     * @return The outcome of the search conducted by the solver.
+     */
+    default UniverseSolverResult solveDimacs(List<Integer> assumptions) {
+        var integerAssumptions = new ArrayList<UniverseAssumption<BigInteger>>(assumptions.size());
 
-     /**
-      * Solves the problem associated to this solver.
-      *
-      * @param assumptions The assumptions to consider when solving.
-      *
-      * @return The outcome of the search conducted by the solver.
-      */
-    default UniverseSolverResult solve(List<UniverseAssumption<BigInteger>> assumptions){
-        List<UniverseAssumption<Boolean>> booleanAssumptions=new ArrayList<>(assumptions.size());
-        for(var i:assumptions){
-            BigInteger v = i.getValue();
-            boolean e = i.isEqual();
+        for (var a : assumptions) {
+            if (a < 0) {
+                integerAssumptions.add(new UniverseAssumption<>(Integer.toString(-a), true, ZERO));
 
-            if(v.signum()!=0  && !v.equals(BigInteger.ONE)){
-                throw new IllegalArgumentException("Assumption must be boolean");
+            } else {
+                integerAssumptions.add(new UniverseAssumption<>(a.toString(), true, ONE));
             }
-
-            booleanAssumptions.add(new UniverseAssumption<>(i.getVariableId(),e,v.equals(BigInteger.ONE)));
         }
-        return solveBoolean(booleanAssumptions);
-    }
-}
 
+        return solve(integerAssumptions);
+    }
+
+    /**
+     * Solves the problem associated to this solver.
+     *
+     * @param assumptions The assumptions to consider when solving.
+     *
+     * @return The outcome of the search conducted by the solver.
+     */
+    default UniverseSolverResult solveBoolean(List<UniverseAssumption<Boolean>> assumptions) {
+        var integerAssumptions = new ArrayList<UniverseAssumption<BigInteger>>(assumptions.size());
+
+        for (var a : assumptions) {
+            if (Boolean.TRUE.equals(a.getValue())) {
+                integerAssumptions.add(new UniverseAssumption<>(a.getVariableId(), a.isEqual(), ONE));
+
+            } else {
+                integerAssumptions.add(new UniverseAssumption<>(a.getVariableId(), a.isEqual(), ZERO));
+            }
+        }
+
+        return solve(integerAssumptions);
+    }
+
+}

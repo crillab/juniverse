@@ -1,6 +1,6 @@
 /**
- * JUniverse, a solver interface.
- * Copyright (c) 2022 - Univ Artois, CNRS & Exakis Nelite.
+ * JUniverse, a universal solver interface.
+ * Copyright (c) 2022-2023 - Univ Artois, CNRS & Exakis Nelite.
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -15,22 +15,27 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.
- * If not, see {@link http://www.gnu.org/licenses}.
+ * If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.univartois.cril.juniverse.csp.intension;
 
 /**
- * The IIntensionConstraint defines an interface for representing the abstract syntax tree
- * of an intension constraint, to allow its encoding using pseudo-Boolean constraints
- * and/or clauses.
+ * The IUniverseIntensionConstraint defines an interface for representing the abstract
+ * syntax tree of an intension constraint.
  *
  * @author Thibault Falque
  * @author Romain Wallon
  *
- * @version 0.1.0
+ * @version 0.2.0
  */
-public interface IIntensionConstraint {
-    void accept(IIntensionConstraintVisitor visitor);
+public interface IUniverseIntensionConstraint {
+
+    /**
+     * Accepts an {@link IUniverseIntensionConstraintVisitor}.
+     *
+     * @param visitor The visitor to accept.
+     */
+    void accept(IUniverseIntensionConstraintVisitor visitor);
 
 }

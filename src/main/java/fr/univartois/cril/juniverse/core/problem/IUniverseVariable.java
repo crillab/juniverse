@@ -1,6 +1,6 @@
 /**
- * JUniverse, a solver interface.
- * Copyright (c) 2022 - Univ Artois, CNRS & Exakis Nelite.
+ * JUniverse, a universal solver interface.
+ * Copyright (c) 2022-2023 - Univ Artois, CNRS & Exakis Nelite.
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -15,19 +15,18 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.
- * If not, see {@link http://www.gnu.org/licenses}.
+ * If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.univartois.cril.juniverse.core.problem;
 
 /**
- * The IUniverseVariable represents a Variable in constraint problem.
+ * The IUniverseVariable represents a variable in a constraint problem.
  *
  * @author Thibault Falque
  * @author Romain Wallon
  *
- * @version 0.1.0
- *
+ * @version 0.2.0
  */
 public interface IUniverseVariable {
 
@@ -39,9 +38,9 @@ public interface IUniverseVariable {
     String getName();
 
     /**
-     * Gives the identifier of this variable.
+     * Gives the (internal) identifier of this variable.
      *
-     * @return The identifier of this variable.
+     * @return The (internal) identifier of this variable.
      */
     int getId();
 
@@ -51,4 +50,5 @@ public interface IUniverseVariable {
      * @return The domain of this variable.
      */
     IUniverseDomain getDomain();
+
 }

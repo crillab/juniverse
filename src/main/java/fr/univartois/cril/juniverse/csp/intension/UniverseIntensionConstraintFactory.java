@@ -1,6 +1,6 @@
 /**
- * JUniverse, a solver interface.
- * Copyright (c) 2022 - Univ Artois, CNRS & Exakis Nelite.
+ * JUniverse, a universal solver interface.
+ * Copyright (c) 2022-2023 - Univ Artois, CNRS & Exakis Nelite.
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.
- * If not, see {@link http://www.gnu.org/licenses}.
+ * If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.univartois.cril.juniverse.csp.intension;
@@ -27,23 +27,24 @@ import fr.univartois.cril.juniverse.csp.operator.UniverseArithmeticOperator;
 import fr.univartois.cril.juniverse.csp.operator.UniverseBooleanOperator;
 import fr.univartois.cril.juniverse.csp.operator.UniverseOperator;
 import fr.univartois.cril.juniverse.csp.operator.UniverseRelationalOperator;
+import fr.univartois.cril.juniverse.csp.operator.UniverseSetBelongingOperator;
 
 /**
- * The IntensionConstraintFactory makes easier the construction of {@code intension}
+ * The UniverseIntensionConstraintFactory makes easier the construction of {@code intension}
  * constraints from the solver's API, by providing a functional notation similar to that
  * used to define the constraints using XCSP3.
  *
  * @author Thibault Falque
  * @author Romain Wallon
  *
- * @version 0.1.0
+ * @version 0.2.0
  */
-public final class IntensionConstraintFactory {
+public final class UniverseIntensionConstraintFactory {
 
     /**
      * Disables instantiation.
      */
-    private IntensionConstraintFactory() {
+    private UniverseIntensionConstraintFactory() {
         throw new AssertionError("No IntensionConstraintFactory instances for you!");
     }
 
@@ -54,8 +55,8 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint constant(long value) {
-        return new ConstantIntensionConstraint(BigInteger.valueOf(value));
+    public static IUniverseIntensionConstraint constant(long value) {
+        return new UniverseConstantIntensionConstraint(BigInteger.valueOf(value));
     }
 
     /**
@@ -65,8 +66,8 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint constant(BigInteger value) {
-        return new ConstantIntensionConstraint(value);
+    public static IUniverseIntensionConstraint constant(BigInteger value) {
+        return new UniverseConstantIntensionConstraint(value);
     }
 
     /**
@@ -76,8 +77,8 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint variable(String id) {
-        return new VariableIntensionConstraint(id);
+    public static IUniverseIntensionConstraint variable(String id) {
+        return new UniverseVariableIntensionConstraint(id);
     }
 
     /**
@@ -87,7 +88,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint neg(IIntensionConstraint constr) {
+    public static IUniverseIntensionConstraint neg(IUniverseIntensionConstraint constr) {
         return unary(UniverseArithmeticOperator.NEG, constr);
     }
 
@@ -99,7 +100,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint abs(IIntensionConstraint constr) {
+    public static IUniverseIntensionConstraint abs(IUniverseIntensionConstraint constr) {
         return unary(UniverseArithmeticOperator.ABS, constr);
     }
 
@@ -110,7 +111,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint add(IIntensionConstraint... constrs) {
+    public static IUniverseIntensionConstraint add(IUniverseIntensionConstraint... constrs) {
         return nary(UniverseArithmeticOperator.ADD, constrs);
     }
 
@@ -121,7 +122,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint add(List<IIntensionConstraint> constrs) {
+    public static IUniverseIntensionConstraint add(List<IUniverseIntensionConstraint> constrs) {
         return nary(UniverseArithmeticOperator.ADD, constrs);
     }
 
@@ -133,7 +134,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint sub(IIntensionConstraint left, IIntensionConstraint right) {
+    public static IUniverseIntensionConstraint sub(IUniverseIntensionConstraint left, IUniverseIntensionConstraint right) {
         return binary(UniverseArithmeticOperator.SUB, left, right);
     }
 
@@ -145,7 +146,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint mult(IIntensionConstraint... constrs) {
+    public static IUniverseIntensionConstraint mult(IUniverseIntensionConstraint... constrs) {
         return nary(UniverseArithmeticOperator.MULT, constrs);
     }
 
@@ -157,7 +158,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint mult(List<IIntensionConstraint> constrs) {
+    public static IUniverseIntensionConstraint mult(List<IUniverseIntensionConstraint> constrs) {
         return nary(UniverseArithmeticOperator.MULT, constrs);
     }
 
@@ -169,7 +170,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint div(IIntensionConstraint left, IIntensionConstraint right) {
+    public static IUniverseIntensionConstraint div(IUniverseIntensionConstraint left, IUniverseIntensionConstraint right) {
         return binary(UniverseArithmeticOperator.DIV, left, right);
     }
 
@@ -181,7 +182,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint mod(IIntensionConstraint left, IIntensionConstraint right) {
+    public static IUniverseIntensionConstraint mod(IUniverseIntensionConstraint left, IUniverseIntensionConstraint right) {
         return binary(UniverseArithmeticOperator.MOD, left, right);
     }
 
@@ -192,7 +193,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint sqr(IIntensionConstraint constr) {
+    public static IUniverseIntensionConstraint sqr(IUniverseIntensionConstraint constr) {
         return unary(UniverseArithmeticOperator.SQR, constr);
     }
 
@@ -204,7 +205,8 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint pow(IIntensionConstraint constr, IIntensionConstraint exponent) {
+    public static IUniverseIntensionConstraint pow(IUniverseIntensionConstraint constr,
+            IUniverseIntensionConstraint exponent) {
         return binary(UniverseArithmeticOperator.POW, constr, exponent);
     }
 
@@ -215,7 +217,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint min(IIntensionConstraint... constrs) {
+    public static IUniverseIntensionConstraint min(IUniverseIntensionConstraint... constrs) {
         return nary(UniverseArithmeticOperator.MIN, constrs);
     }
 
@@ -226,7 +228,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint min(List<IIntensionConstraint> constrs) {
+    public static IUniverseIntensionConstraint min(List<IUniverseIntensionConstraint> constrs) {
         return nary(UniverseArithmeticOperator.MIN, constrs);
     }
 
@@ -237,7 +239,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint max(IIntensionConstraint... constrs) {
+    public static IUniverseIntensionConstraint max(IUniverseIntensionConstraint... constrs) {
         return nary(UniverseArithmeticOperator.MAX, constrs);
     }
 
@@ -248,7 +250,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint max(List<IIntensionConstraint> constrs) {
+    public static IUniverseIntensionConstraint max(List<IUniverseIntensionConstraint> constrs) {
         return nary(UniverseArithmeticOperator.MAX, constrs);
     }
 
@@ -260,7 +262,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint dist(IIntensionConstraint left, IIntensionConstraint right) {
+    public static IUniverseIntensionConstraint dist(IUniverseIntensionConstraint left, IUniverseIntensionConstraint right) {
         return binary(UniverseArithmeticOperator.DIST, left, right);
     }
 
@@ -272,7 +274,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint lt(IIntensionConstraint left, IIntensionConstraint right) {
+    public static IUniverseIntensionConstraint lt(IUniverseIntensionConstraint left, IUniverseIntensionConstraint right) {
         return binary(UniverseRelationalOperator.LT, left, right);
     }
 
@@ -285,7 +287,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint le(IIntensionConstraint left, IIntensionConstraint right) {
+    public static IUniverseIntensionConstraint le(IUniverseIntensionConstraint left, IUniverseIntensionConstraint right) {
         return binary(UniverseRelationalOperator.LE, left, right);
     }
 
@@ -296,7 +298,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint eq(IIntensionConstraint... constrs) {
+    public static IUniverseIntensionConstraint eq(IUniverseIntensionConstraint... constrs) {
         return nary(UniverseBooleanOperator.EQUIV, constrs);
     }
 
@@ -307,7 +309,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint eq(List<IIntensionConstraint> constrs) {
+    public static IUniverseIntensionConstraint eq(List<IUniverseIntensionConstraint> constrs) {
         return nary(UniverseBooleanOperator.EQUIV, constrs);
     }
 
@@ -319,7 +321,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint neq(IIntensionConstraint left, IIntensionConstraint right) {
+    public static IUniverseIntensionConstraint neq(IUniverseIntensionConstraint left, IUniverseIntensionConstraint right) {
         return binary(UniverseRelationalOperator.NEQ, left, right);
     }
 
@@ -332,7 +334,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint ge(IIntensionConstraint left, IIntensionConstraint right) {
+    public static IUniverseIntensionConstraint ge(IUniverseIntensionConstraint left, IUniverseIntensionConstraint right) {
         return binary(UniverseRelationalOperator.GE, left, right);
     }
 
@@ -344,7 +346,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint gt(IIntensionConstraint left, IIntensionConstraint right) {
+    public static IUniverseIntensionConstraint gt(IUniverseIntensionConstraint left, IUniverseIntensionConstraint right) {
         return binary(UniverseRelationalOperator.GT, left, right);
     }
 
@@ -355,7 +357,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint not(IIntensionConstraint constr) {
+    public static IUniverseIntensionConstraint not(IUniverseIntensionConstraint constr) {
         return unary(UniverseBooleanOperator.NOT, constr);
     }
 
@@ -366,7 +368,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint and(IIntensionConstraint... constrs) {
+    public static IUniverseIntensionConstraint and(IUniverseIntensionConstraint... constrs) {
         return nary(UniverseBooleanOperator.AND, constrs);
     }
 
@@ -377,7 +379,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint and(List<IIntensionConstraint> constrs) {
+    public static IUniverseIntensionConstraint and(List<IUniverseIntensionConstraint> constrs) {
         return nary(UniverseBooleanOperator.AND, constrs);
     }
 
@@ -388,7 +390,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint or(IIntensionConstraint... constrs) {
+    public static IUniverseIntensionConstraint or(IUniverseIntensionConstraint... constrs) {
         return nary(UniverseBooleanOperator.OR, constrs);
     }
 
@@ -399,7 +401,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint or(List<IIntensionConstraint> constrs) {
+    public static IUniverseIntensionConstraint or(List<IUniverseIntensionConstraint> constrs) {
         return nary(UniverseBooleanOperator.OR, constrs);
     }
 
@@ -411,7 +413,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint xor(IIntensionConstraint... constrs) {
+    public static IUniverseIntensionConstraint xor(IUniverseIntensionConstraint... constrs) {
         return nary(UniverseBooleanOperator.XOR, constrs);
     }
 
@@ -423,7 +425,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint xor(List<IIntensionConstraint> constrs) {
+    public static IUniverseIntensionConstraint xor(List<IUniverseIntensionConstraint> constrs) {
         return nary(UniverseBooleanOperator.XOR, constrs);
     }
 
@@ -434,7 +436,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint equiv(IIntensionConstraint... constrs) {
+    public static IUniverseIntensionConstraint equiv(IUniverseIntensionConstraint... constrs) {
         return nary(UniverseBooleanOperator.EQUIV, constrs);
     }
 
@@ -445,7 +447,7 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint equiv(List<IIntensionConstraint> constrs) {
+    public static IUniverseIntensionConstraint equiv(List<IUniverseIntensionConstraint> constrs) {
         return nary(UniverseBooleanOperator.EQUIV, constrs);
     }
 
@@ -458,8 +460,100 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint impl(IIntensionConstraint left, IIntensionConstraint right) {
+    public static IUniverseIntensionConstraint impl(IUniverseIntensionConstraint left, IUniverseIntensionConstraint right) {
         return binary(UniverseBooleanOperator.IMPL, left, right);
+    }
+
+    /**
+     * Creates an {@code intension} constraint applying the {@code in} operator w.r.t. a
+     * range of values.
+     *
+     * @param constraint The constraint that should be in the range.
+     * @param min The minimum value in the range.
+     * @param max The maximum value in the range.
+     *
+     * @return The created {@code intension} constraint.
+     */
+    public static IUniverseIntensionConstraint in(IUniverseIntensionConstraint constraint,
+            BigInteger min, BigInteger max) {
+        return binary(UniverseSetBelongingOperator.IN, constraint,
+                new UniverseRangeIntensionConstraint(min, max));
+    }
+
+    /**
+     * Creates an {@code intension} constraint applying the {@code in} operator w.r.t. a
+     * set.
+     *
+     * @param constraint The constraint that should be in the range.
+     * @param constrs The constraints in the set.
+     *
+     * @return The created {@code intension} constraint.
+     */
+    public static IUniverseIntensionConstraint in(IUniverseIntensionConstraint constraint,
+            IUniverseIntensionConstraint... constrs) {
+        return binary(UniverseSetBelongingOperator.IN, constraint,
+                new UniverseSetIntensionConstraint(List.of(constrs)));
+    }
+
+    /**
+     * Creates an {@code intension} constraint applying the {@code in} operator w.r.t. a
+     * set.
+     *
+     * @param constraint The constraint that should be in the range.
+     * @param constrs The constraints in the set.
+     *
+     * @return The created {@code intension} constraint.
+     */
+    public static IUniverseIntensionConstraint in(IUniverseIntensionConstraint constraint,
+            List<IUniverseIntensionConstraint> constrs) {
+        return binary(UniverseSetBelongingOperator.IN, constraint,
+                new UniverseSetIntensionConstraint(constrs));
+    }
+
+    /**
+     * Creates an {@code intension} constraint applying the {@code not-in} operator w.r.t.
+     * a range of values.
+     *
+     * @param constraint The constraint that should be in the range.
+     * @param min The minimum value in the range.
+     * @param max The maximum value in the range.
+     *
+     * @return The created {@code intension} constraint.
+     */
+    public static IUniverseIntensionConstraint notIn(IUniverseIntensionConstraint constraint,
+            BigInteger min, BigInteger max) {
+        return binary(UniverseSetBelongingOperator.NOT_IN, constraint,
+                new UniverseRangeIntensionConstraint(min, max));
+    }
+
+    /**
+     * Creates an {@code intension} constraint applying the {@code not-in} operator w.r.t.
+     * a set.
+     *
+     * @param constraint The constraint that should be in the range.
+     * @param constrs The constraints in the set.
+     *
+     * @return The created {@code intension} constraint.
+     */
+    public static IUniverseIntensionConstraint notIn(IUniverseIntensionConstraint constraint,
+            IUniverseIntensionConstraint... constrs) {
+        return binary(UniverseSetBelongingOperator.NOT_IN, constraint,
+                new UniverseSetIntensionConstraint(List.of(constrs)));
+    }
+
+    /**
+     * Creates an {@code intension} constraint applying the {@code not-in} operator w.r.t.
+     * a set.
+     *
+     * @param constraint The constraint that should be in the range.
+     * @param constrs The constraints in the set.
+     *
+     * @return The created {@code intension} constraint.
+     */
+    public static IUniverseIntensionConstraint notIn(IUniverseIntensionConstraint constraint,
+            List<IUniverseIntensionConstraint> constrs) {
+        return binary(UniverseSetBelongingOperator.NOT_IN, constraint,
+                new UniverseSetIntensionConstraint(constrs));
     }
 
     /**
@@ -473,9 +567,9 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint ite(IIntensionConstraint condition,
-            IIntensionConstraint ifTrue, IIntensionConstraint ifFalse) {
-        return new IfThenElseIntensionConstraint(condition, ifTrue, ifFalse);
+    public static IUniverseIntensionConstraint ite(IUniverseIntensionConstraint condition,
+            IUniverseIntensionConstraint ifTrue, IUniverseIntensionConstraint ifFalse) {
+        return new UniverseIfThenElseIntensionConstraint(condition, ifTrue, ifFalse);
     }
 
     /**
@@ -486,8 +580,9 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint unary(UniverseOperator operator, IIntensionConstraint constr) {
-        return new UnaryIntensionConstraint(operator, constr);
+    public static IUniverseIntensionConstraint unary(UniverseOperator operator,
+            IUniverseIntensionConstraint constr) {
+        return new UniverseUnaryIntensionConstraint(operator, constr);
     }
 
     /**
@@ -499,9 +594,9 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint binary(UniverseOperator operator, IIntensionConstraint left,
-            IIntensionConstraint right) {
-        return new BinaryIntensionConstraint(operator, left, right);
+    public static IUniverseIntensionConstraint binary(UniverseOperator operator, IUniverseIntensionConstraint left,
+            IUniverseIntensionConstraint right) {
+        return new UniverseBinaryIntensionConstraint(operator, left, right);
     }
 
     /**
@@ -512,7 +607,8 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint nary(UniverseOperator operator, IIntensionConstraint... constrs) {
+    public static IUniverseIntensionConstraint nary(UniverseOperator operator,
+            IUniverseIntensionConstraint... constrs) {
         return nary(operator, List.of(constrs));
     }
 
@@ -524,8 +620,9 @@ public final class IntensionConstraintFactory {
      *
      * @return The created {@code intension} constraint.
      */
-    public static IIntensionConstraint nary(UniverseOperator operator, List<IIntensionConstraint> constrs) {
-        return new NaryIntensionConstraint(operator, constrs);
+    public static IUniverseIntensionConstraint nary(UniverseOperator operator,
+            List<IUniverseIntensionConstraint> constrs) {
+        return new UniverseNaryIntensionConstraint(operator, constrs);
     }
 
 }

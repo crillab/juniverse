@@ -1,6 +1,6 @@
 /**
- * JUniverse, a solver interface.
- * Copyright (c) 2022 - Univ Artois, CNRS & Exakis Nelite.
+ * JUniverse, a universal solver interface.
+ * Copyright (c) 2022-2023 - Univ Artois, CNRS & Exakis Nelite.
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -15,52 +15,62 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.
- * If not, see {@link http://www.gnu.org/licenses}.
+ * If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.univartois.cril.juniverse.core;
 
+import java.io.Serializable;
 
 /**
- * The UniverseConstradictionException
+ * The UniverseContradictionException is an exception that is thrown when a trivial
+ * inconsistency is detected by the solver.
  *
  * @author Thibault Falque
  * @author Romain Wallon
  *
- * @version 0.1.0
+ * @version 0.2.0
  */
-public class UniverseContradictionException extends RuntimeException {
+public final class UniverseContradictionException extends RuntimeException {
 
     /**
-     * Creates a new UniverseConstradictionException.
+     * The {@code serialVersionUID} of this {@link Serializable} class.
+     */
+    private static final long serialVersionUID = 6613914071597146350L;
+
+    /**
+     * Creates a new UniverseContradictionException.
      */
     public UniverseContradictionException() {
+        // Nothing more to do.
     }
 
     /**
-     * Creates a new UniverseConstradictionException.
-     * @param message
+     * Creates a new UniverseContradictionException.
+     *
+     * @param message The message describing the reason of the contradiction.
      */
     public UniverseContradictionException(String message) {
         super(message);
     }
 
     /**
-     * Creates a new UniverseConstradictionException.
-     * @param cause
+     * Creates a new UniverseContradictionException.
+     *
+     * @param cause The cause of the exception.
      */
     public UniverseContradictionException(Throwable cause) {
         super(cause);
     }
 
     /**
-     * Creates a new UniverseConstradictionException.
-     * @param message
-     * @param cause
+     * Creates a new UniverseContradictionException.
+     *
+     * @param message The message describing the reason of the contradiction.
+     * @param cause The cause of the exception.
      */
     public UniverseContradictionException(String message, Throwable cause) {
         super(message, cause);
     }
 
 }
-

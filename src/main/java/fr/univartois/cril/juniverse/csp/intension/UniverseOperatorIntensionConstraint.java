@@ -1,6 +1,6 @@
 /**
- * JUniverse, a solver interface.
- * Copyright (c) 2022 - Univ Artois, CNRS & Exakis Nelite.
+ * JUniverse, a universal solver interface.
+ * Copyright (c) 2022-2023 - Univ Artois, CNRS & Exakis Nelite.
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.
- * If not, see {@link http://www.gnu.org/licenses}.
+ * If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.univartois.cril.juniverse.csp.intension;
@@ -23,16 +23,16 @@ package fr.univartois.cril.juniverse.csp.intension;
 import fr.univartois.cril.juniverse.csp.operator.UniverseOperator;
 
 /**
- * The OperatorIntensionConstraint is the parent class of all the implementations of
- * {@link IIntensionConstraint} that apply an operator on some other intension
+ * The UniverseOperatorIntensionConstraint is the parent class of all the implementations
+ * of {@link IUniverseIntensionConstraint} that apply an operator on some other intension
  * constraint(s).
  *
  * @author Thibault Falque
  * @author Romain Wallon
  *
- * @version 0.1.0
+ * @version 0.2.0
  */
-public abstract class UniverseOperatorIntensionConstraint implements IIntensionConstraint {
+public abstract class UniverseOperatorIntensionConstraint implements IUniverseIntensionConstraint {
 
     /**
      * The operator applied by this constraint.
@@ -40,7 +40,7 @@ public abstract class UniverseOperatorIntensionConstraint implements IIntensionC
     protected UniverseOperator operator;
 
     /**
-     * Creates a new OperatorIntensionConstraint.
+     * Creates a new UniverseOperatorIntensionConstraint.
      *
      * @param operator The operator applied by the constraint.
      */

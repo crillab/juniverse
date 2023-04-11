@@ -1,6 +1,6 @@
 /**
- * JUniverse, a solver interface.
- * Copyright (c) 2022 - Univ Artois, CNRS & Exakis Nelite.
+ * JUniverse, a universal solver interface.
+ * Copyright (c) 2022-2023 - Univ Artois, CNRS & Exakis Nelite.
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.
- * If not, see {@link http://www.gnu.org/licenses}.
+ * If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.univartois.cril.juniverse.core.problem;
@@ -23,12 +23,12 @@ package fr.univartois.cril.juniverse.core.problem;
 import java.util.List;
 
 /**
- * The IUniverseProblem represents the constraint problem.
+ * The IUniverseProblem represents a constraint problem to solve.
  *
  * @author Thibault Falque
  * @author Romain Wallon
  *
- * @version 0.1.0
+ * @version 0.2.0
  */
 public interface IUniverseProblem {
 
@@ -36,7 +36,6 @@ public interface IUniverseProblem {
      * Adds a variable to this problem.
      *
      * @param variable The variable to add.
-     * @see IUniverseVariable
      */
     void addVariable(IUniverseVariable variable);
 
@@ -44,7 +43,6 @@ public interface IUniverseProblem {
      * Gives the variables in this problem.
      *
      * @return The variables in this problem.
-     * @see IUniverseVariable
      */
     List<IUniverseVariable> getVariables();
 
@@ -52,7 +50,6 @@ public interface IUniverseProblem {
      * Adds a constraint to this problem.
      *
      * @param constraint The constraint to add.
-     * @see IUniverseConstraint
      */
     void addConstraint(IUniverseConstraint constraint);
 
@@ -60,7 +57,7 @@ public interface IUniverseProblem {
      * Gives the constraints in this problem.
      *
      * @return The constraints in this problem.
-     * @see IUniverseConstraint
      */
     List<IUniverseConstraint> getConstraints();
+
 }

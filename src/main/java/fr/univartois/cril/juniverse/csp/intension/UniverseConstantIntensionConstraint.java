@@ -1,6 +1,6 @@
 /**
- * JUniverse, a solver interface.
- * Copyright (c) 2022 - Univ Artois, CNRS & Exakis Nelite.
+ * JUniverse, a universal solver interface.
+ * Copyright (c) 2022-2023 - Univ Artois, CNRS & Exakis Nelite.
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.
- * If not, see {@link http://www.gnu.org/licenses}.
+ * If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.univartois.cril.juniverse.csp.intension;
@@ -23,15 +23,15 @@ package fr.univartois.cril.juniverse.csp.intension;
 import java.math.BigInteger;
 
 /**
- * The ConstantIntensionConstraint is an {@link IIntensionConstraint} that represents a
- * constant value.
+ * The UniverseConstantIntensionConstraint is an {@link IUniverseIntensionConstraint} that
+ * represents a constant value.
  *
  * @author Thibault Falque
  * @author Romain Wallon
  *
- * @version 0.1.0
+ * @version 0.2.0
  */
-public final class ConstantIntensionConstraint implements IIntensionConstraint {
+public final class UniverseConstantIntensionConstraint implements IUniverseIntensionConstraint {
 
     /**
      * The value of the constant.
@@ -43,7 +43,7 @@ public final class ConstantIntensionConstraint implements IIntensionConstraint {
      *
      * @param value The value of the constant.
      */
-    public ConstantIntensionConstraint(BigInteger value) {
+    public UniverseConstantIntensionConstraint(BigInteger value) {
         this.value = value;
     }
 
@@ -56,11 +56,15 @@ public final class ConstantIntensionConstraint implements IIntensionConstraint {
         return value;
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.cril.juniverse.csp.intension.IIntensionConstraint#accept(fr.
+     * univartois.cril.juniverse.csp.intension.IIntensionConstraintVisitor)
+     */
     @Override
-    public void accept(IIntensionConstraintVisitor visitor) {
-
+    public void accept(IUniverseIntensionConstraintVisitor visitor) {
         visitor.visit(this);
-
     }
 
 }

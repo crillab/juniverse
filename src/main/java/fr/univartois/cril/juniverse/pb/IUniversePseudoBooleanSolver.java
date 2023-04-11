@@ -1,6 +1,6 @@
 /**
- * JUniverse, a solver interface.
- * Copyright (c) 2022 - Univ Artois, CNRS & Exakis Nelite.
+ * JUniverse, a universal solver interface.
+ * Copyright (c) 2022-2023 - Univ Artois, CNRS & Exakis Nelite.
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -15,166 +15,143 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.
- * If not, see {@link http://www.gnu.org/licenses}.
+ * If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.univartois.cril.juniverse.pb;
 
 import java.math.BigInteger;
+import java.util.Collections;
 import java.util.List;
 
-import fr.univartois.cril.juniverse.sat.IUniverseSatSolver;
 import fr.univartois.cril.juniverse.core.UniverseContradictionException;
-
+import fr.univartois.cril.juniverse.sat.IUniverseSatSolver;
 
 /**
- * The IUniversePseudoBooleanSolver
+ * The IUniversePseudoBooleanSolver interface defines the contract for
+ * pseudo-Boolean solvers.
  *
  * @author Thibault Falque
  * @author Romain Wallon
  *
- * @version 0.1.0
+ * @version 0.2.0
  */
 public interface IUniversePseudoBooleanSolver extends IUniverseSatSolver {
+
     /**
-     * Create a Pseudo-Boolean constraint of the type "at least n or at most n
-     * of those literals must be satisfied"
+     * Creates a pseudo-Boolean constraint of type {@code at-least} or {@code at-most}.
      *
-     * @param lits
-     *            a set of literals. The vector can be reused since the solver
-     *            is not supposed to keep a reference to that vector.
-     * @param coeffs
-     *            the coefficients of the literals. The vector can be reused
-     *            since the solver is not supposed to keep a reference to that
-     *            vector.
-     * @param moreThan
-     *            true if it is a constraint &gt;= degree, false if it is a
-     *            constraint &lt;= degree
-     * @param d
-     *            the degree of the cardinality constraint
-     * @throws UniverseContradictionException
-     *             iff the vector of literals is empty or if the constraint is
-     *             falsified after unit propagation
-     * 
+     * @param literals The literals of the constraint to add.
+     * @param coefficients The coefficients of the literals.
+     * @param moreThan Whether the constraint is an {@code at-least} constraint, or an
+     *        {@code at-most} constraint.
+     * @param degree The degree of the constraint.
+     *
+     * @throws UniverseContradictionException If the constraint to add is inconsistent.
      */
-     void addPseudoBoolean(List<Integer> lits, List<BigInteger> coeffs,
-                                  boolean moreThan, BigInteger d);
+    void addPseudoBoolean(List<Integer> literals, List<BigInteger> coefficients, boolean moreThan,
+            BigInteger degree);
 
     /**
-     * Create a pseudo boolean constraint of the type "at most".
-     * 
-     * @param literals
-     *            a set of literals The vector can be reused since the solver is
-     *            not supposed to keep a reference to that vector.
-     * @param coeffs
-     *            the coefficients of the literals. The vector can be reused
-     *            since the solver is not supposed to keep a reference to that
-     *            vector.
-     * @param degree
-     *            the degree of the pseudo-boolean constraint
-     * @throws UniverseContradictionException
-     *             iff the constraint is found trivially unsat.
-     * 
-     * 
+     * Creates an {@code at-most} cardinality constraint.
+     *
+     * @param literals The literals of the constraint to add.
+     * @param degree The degree of the constraint.
+     *
+     * @throws UniverseContradictionException If the constraint to add is inconsistent.
      */
-
-     void addAtMost(List<Integer> literals, List<Integer> coeffs, int degree);
+    default void addAtMost(List<Integer> literals, int degree) {
+        addAtMost(literals, Collections.nCopies(literals.size(), 1), degree);
+    }
 
     /**
-     * Create a pseudo boolean constraint of the type "at most".
-     * 
-     * @param literals
-     *            a set of literals The vector can be reused since the solver is
-     *            not supposed to keep a reference to that vector.
-     * @param coeffs
-     *            the coefficients of the literals. The vector can be reused
-     *            since the solver is not supposed to keep a reference to that
-     *            vector.
-     * @param degree
-     *            the degree of the pseudo-boolean constraint
-     * @throws UniverseContradictionException
-     *             iff the constraint is found trivially unsat.
-     * 
-     * 
+     * Creates an {@code at-most} pseudo-Boolean constraint.
+     *
+     * @param literals The literals of the constraint to add.
+     * @param coefficients The coefficients of the literals.
+     * @param degree The degree of the constraint.
+     *
+     * @throws UniverseContradictionException If the constraint to add is inconsistent.
      */
-
-     void addAtMost(List<Integer> literals, List<BigInteger> coeffs,
-                           BigInteger degree);
+    void addAtMost(List<Integer> literals, List<Integer> coefficients, int degree);
 
     /**
-     * Create a pseudo-boolean constraint of the type "at least".
-     * 
-     * @param literals
-     *            a set of literals. The vector can be reused since the solver
-     *            is not supposed to keep a reference to that vector.
-     * @param coeffs
-     *            the coefficients of the literals. The vector can be reused
-     *            since the solver is not supposed to keep a reference to that
-     *            vector.
-     * @param degree
-     *            the degree of the pseudo-boolean constraint
-     * @throws UniverseContradictionException
-     *             iff the constraint is found trivially unsat.
-     * 
-     * 
+     * Creates an {@code at-most} pseudo-Boolean constraint.
+     *
+     * @param literals The literals of the constraint to add.
+     * @param coefficients The coefficients of the literals.
+     * @param degree The degree of the constraint.
+     *
+     * @throws UniverseContradictionException If the constraint to add is inconsistent.
      */
-     void addAtLeast(List<Integer> literals, List<Integer> coeffs, int degree);
+    void addAtMost(List<Integer> literals, List<BigInteger> coefficients, BigInteger degree);
 
     /**
-     * Create a pseudo-boolean constraint of the type "at least".
-     * 
-     * @param literals
-     *            a set of literals. The vector can be reused since the solver
-     *            is not supposed to keep a reference to that vector.
-     * @param coeffs
-     *            the coefficients of the literals. The vector can be reused
-     *            since the solver is not supposed to keep a reference to that
-     *            vector.
-     * @param degree
-     *            the degree of the pseudo-boolean constraint
-     * @throws UniverseContradictionException
-     *             iff the constraint is found trivially unsat.
-     * 
-     * 
+     * Creates an {@code at-least} cardinality constraint.
+     *
+     * @param literals The literals of the constraint to add.
+     * @param degree The degree of the constraint.
+     *
+     * @throws UniverseContradictionException If the constraint to add is inconsistent.
      */
-     void addAtLeast(List<Integer> literals, List<BigInteger> coeffs,
-                            BigInteger degree);
+    default void addAtLeast(List<Integer> literals, int degree) {
+        addAtLeast(literals, Collections.nCopies(literals.size(), 1), degree);
+    }
 
     /**
-     * Create a pseudo-boolean constraint of the type "subset sum".
-     * 
-     * @param literals
-     *            a set of literals. The vector can be reused since the solver
-     *            is not supposed to keep a reference to that vector.
-     * @param coeffs
-     *            the coefficients of the literals. The vector can be reused
-     *            since the solver is not supposed to keep a reference to that
-     *            vector.
-     * @param weight
-     *            the number of literals that must be satisfied
-     * @throws UniverseContradictionException
-     *             iff the constraint is trivially unsatisfiable.
-     * 
+     * Creates an {@code at-least} pseudo-Boolean constraint.
+     *
+     * @param literals The literals of the constraint to add.
+     * @param coefficients The coefficients of the literals.
+     * @param degree The degree of the constraint.
+     *
+     * @throws UniverseContradictionException If the constraint to add is inconsistent.
      */
-     void addExactly(List<Integer> literals, List<Integer> coeffs, int weight);
+    void addAtLeast(List<Integer> literals, List<Integer> coefficients, int degree);
 
     /**
-     * Create a pseudo-boolean constraint of the type "subset sum".
-     * 
-     * @param literals
-     *            a set of literals. The vector can be reused since the solver
-     *            is not supposed to keep a reference to that vector.
-     * @param coeffs
-     *            the coefficients of the literals. The vector can be reused
-     *            since the solver is not supposed to keep a reference to that
-     *            vector.
-     * @param weight
-     *            the number of literals that must be satisfied
-     * @throws UniverseContradictionException
-     *             iff the constraint is trivially unsatisfiable.
-     * 
+     * Creates an {@code at-least} pseudo-Boolean constraint.
+     *
+     * @param literals The literals of the constraint to add.
+     * @param coefficients The coefficients of the literals.
+     * @param degree The degree of the constraint.
+     *
+     * @throws UniverseContradictionException If the constraint to add is inconsistent.
      */
-     void addExactly(List<Integer> literals, List<BigInteger> coeffs,
-                            BigInteger weight);
+    void addAtLeast(List<Integer> literals, List<BigInteger> coefficients, BigInteger degree);
+
+    /**
+     * Creates an {@code exactly} cardinality constraint.
+     *
+     * @param literals The literals of the constraint to add.
+     * @param degree The degree of the constraint.
+     *
+     * @throws UniverseContradictionException If the constraint to add is inconsistent.
+     */
+    default void addExactly(List<Integer> literals, int degree) {
+        addExactly(literals, Collections.nCopies(literals.size(), 1), degree);
+    }
+
+    /**
+     * Creates an {@code exactly} pseudo-Boolean constraint.
+     *
+     * @param literals The literals of the constraint to add.
+     * @param coefficients The coefficients of the literals.
+     * @param degree The degree of the constraint.
+     *
+     * @throws UniverseContradictionException If the constraint to add is inconsistent.
+     */
+    void addExactly(List<Integer> literals, List<Integer> coefficients, int degree);
+
+    /**
+     * Creates an {@code exactly} pseudo-Boolean constraint.
+     *
+     * @param literals The literals of the constraint to add.
+     * @param coefficients The coefficients of the literals.
+     * @param degree The degree of the constraint.
+     *
+     * @throws UniverseContradictionException If the constraint to add is inconsistent.
+     */
+    void addExactly(List<Integer> literals, List<BigInteger> coefficients, BigInteger degree);
+
 }
-

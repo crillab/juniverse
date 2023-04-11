@@ -1,6 +1,6 @@
 /**
- * JUniverse, a solver interface.
- * Copyright (c) 2022 - Univ Artois, CNRS & Exakis Nelite.
+ * JUniverse, a universal solver interface.
+ * Copyright (c) 2022-2023 - Univ Artois, CNRS & Exakis Nelite.
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -15,84 +15,76 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.
- * If not, see {@link http://www.gnu.org/licenses}.
+ * If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.univartois.cril.juniverse.csp.intension;
 
-
-import fr.univartois.cril.juniverse.core.UniverseContradictionException;
-
 /**
- * The IIntensionConstraintVisitor visits an intension constraint in order to compute its
- * encoding using pseudo-Boolean constraints.
+ * The IUniverseIntensionConstraintVisitor allows visiting intension constraints to
+ * discover its semantics.
  *
  * @author Thibault Falque
  * @author Romain Wallon
  *
- * @version 0.1.0
+ * @version 0.2.0
  */
-public interface IIntensionConstraintVisitor {
+public interface IUniverseIntensionConstraintVisitor {
 
     /**
      * Visits a unary constraint that appears in an {@code intension} constraint.
      *
      * @param constr The constraint to visit.
-     *
-     * @throws UniverseContradictionException If visiting (and encoding) the constraint results in
-     *         a trivial inconsistency.
      */
-    void visit(UnaryIntensionConstraint constr);
+    void visit(UniverseUnaryIntensionConstraint constr);
 
     /**
      * Visits a binary constraint that appears in an {@code intension} constraint.
      *
      * @param constr The constraint to visit.
-     *
-     * @throws UniverseContradictionException If visiting (and encoding) the constraint results in
-     *         a trivial inconsistency.
      */
-    void visit(BinaryIntensionConstraint constr);
+    void visit(UniverseBinaryIntensionConstraint constr);
 
     /**
      * Visits an n-ary constraint that appears in an {@code intension} constraint.
      *
      * @param constr The constraint to visit.
-     *
-     * @throws UniverseContradictionException If visiting (and encoding) the constraint results in
-     *         a trivial inconsistency.
      */
-    void visit(NaryIntensionConstraint constr);
+    void visit(UniverseNaryIntensionConstraint constr);
 
     /**
      * Visits an if-then-else constraint that appears in an {@code intension} constraint.
      *
      * @param ifThenElse The constraint to visit.
-     *
-     * @throws UniverseContradictionException If visiting (and encoding) the constraint results in
-     *         a trivial inconsistency.
      */
-    void visit(IfThenElseIntensionConstraint ifThenElse);
+    void visit(UniverseIfThenElseIntensionConstraint ifThenElse);
+
+    /**
+     * Visits a set that appears in an {@code intension} constraint.
+     *
+     * @param set The set to visit.
+     */
+    void visit(UniverseSetIntensionConstraint set);
+
+    /**
+     * Visits a range that appears in an {@code intension} constraint.
+     *
+     * @param range The range to visit.
+     */
+    void visit(UniverseRangeIntensionConstraint range);
 
     /**
      * Visits a variable that appears in an {@code intension} constraint.
      *
      * @param variable The variable to visit.
-     *
      */
-    void visit(VariableIntensionConstraint variable);
+    void visit(UniverseVariableIntensionConstraint variable);
 
     /**
      * Visits a constant that appears in an {@code intension} constraint.
      *
      * @param constant The constant to visit.
-     *
      */
-    void visit(ConstantIntensionConstraint constant);
-
-    void visit(RangeIntensionConstraint rangeIntensionConstraint);
-
-    void visit(SetIntensionConstraint setIntensionConstraint);
-
+    void visit(UniverseConstantIntensionConstraint constant);
 
 }

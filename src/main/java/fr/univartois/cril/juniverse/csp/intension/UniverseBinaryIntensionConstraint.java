@@ -1,6 +1,6 @@
 /**
- * JUniverse, a solver interface.
- * Copyright (c) 2022 - Univ Artois, CNRS & Exakis Nelite.
+ * JUniverse, a universal solver interface.
+ * Copyright (c) 2022-2023 - Univ Artois, CNRS & Exakis Nelite.
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.
- * If not, see {@link http://www.gnu.org/licenses}.
+ * If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.univartois.cril.juniverse.csp.intension;
@@ -23,46 +23,51 @@ package fr.univartois.cril.juniverse.csp.intension;
 import fr.univartois.cril.juniverse.csp.operator.UniverseOperator;
 
 /**
- * The BinaryIntensionConstraint is an {@link IIntensionConstraint} that applies an
- * operator on two intension constraints.
+ * The UniverseBinaryIntensionConstraint is an {@link IUniverseIntensionConstraint} that
+ * applies an operator on two intension constraints.
  *
  * @author Thibault Falque
  * @author Romain Wallon
  *
- * @version 0.1.0
+ * @version 0.2.0
  */
-public class BinaryIntensionConstraint extends UniverseOperatorIntensionConstraint {
+public final class UniverseBinaryIntensionConstraint extends UniverseOperatorIntensionConstraint {
 
     /**
      * The left intension constraint on which an operator is applied.
      */
-    private IIntensionConstraint left;
+    private IUniverseIntensionConstraint left;
 
     /**
      * The right intension constraint on which an operator is applied.
      */
-    private IIntensionConstraint right;
+    private IUniverseIntensionConstraint right;
 
     /**
-     * Creates a new BinaryIntensionConstraint.
+     * Creates a new UniverseBinaryIntensionConstraint.
      *
      * @param operator The operator applied by the constraint.
      * @param left The left intension constraint on which the operator is applied.
      * @param right The right intension constraint on which the operator is applied.
      */
-    public BinaryIntensionConstraint(UniverseOperator operator, IIntensionConstraint left,
-            IIntensionConstraint right) {
+    public UniverseBinaryIntensionConstraint(UniverseOperator operator,
+            IUniverseIntensionConstraint left, IUniverseIntensionConstraint right) {
         super(operator);
         this.left = left;
         this.right = right;
     }
 
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.cril.juniverse.csp.intension.IIntensionConstraint#accept(fr.
+     * univartois.cril.juniverse.csp.intension.IIntensionConstraintVisitor)
+     */
     @Override
-    public void accept(IIntensionConstraintVisitor visitor) {
+    public void accept(IUniverseIntensionConstraintVisitor visitor) {
         left.accept(visitor);
         right.accept(visitor);
         visitor.visit(this);
     }
-
 
 }

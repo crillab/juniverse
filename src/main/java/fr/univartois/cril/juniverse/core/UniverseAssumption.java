@@ -1,6 +1,6 @@
 /**
- * JUniverse, a solver interface.
- * Copyright (c) 2022 - Univ Artois, CNRS & Exakis Nelite.
+ * JUniverse, a universal solver interface.
+ * Copyright (c) 2022-2023 - Univ Artois, CNRS & Exakis Nelite.
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -15,29 +15,30 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.
- * If not, see {@link http://www.gnu.org/licenses}.
+ * If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.univartois.cril.juniverse.core;
 
 /**
- * The UniverseAssumption represents an assumption made when solving constraint problem.
- * 
+ * The UniverseAssumption represents an assumption made when solving constraint problems.
+ *
  * @param <T> The type of the assumed value.
+ *
  * @author Thibault Falque
  * @author Romain Wallon
  *
- * @version 0.1.0
+ * @version 0.2.0
  */
-public class UniverseAssumption<T> {
+public final class UniverseAssumption<T> {
 
     /**
-     * The variableId of the variable involved in this assumption.
+     * The identifier of the variable involved in this assumption.
      */
     private String variableId;
 
     /**
-     * Indicates if this assumption represents a equality or not.
+     * Whether this assumption represents an equality or not.
      */
     private boolean equal;
 
@@ -48,40 +49,39 @@ public class UniverseAssumption<T> {
 
     /**
      * Creates a new UniverseAssumption.
-     * 
-     * @param variableId The variableId of the variable involved in this assumption.
-     * @param equal Indicates if this assumption represents a equality or not.
+     *
+     * @param variableId The identifier of the variable involved in this assumption.
+     * @param equal Whether this assumption represents an equality or not.
      * @param value The value of the variable in this assumption.
      */
     public UniverseAssumption(String variableId, boolean equal, T value) {
-        super();
         this.variableId = variableId;
         this.equal = equal;
         this.value = value;
     }
 
     /**
-     * Gives the variableId of this UniverseAssumption.
+     * Gives the identifier of the variable involved in this assumption.
      *
-     * @return This UniverseAssumption's variableId.
+     * @return The identifier of the variable involved in this assumption.
      */
     public String getVariableId() {
         return variableId;
     }
 
     /**
-     * Gives the equal of this UniverseAssumption.
+     * Checks whether this assumption represents an equality or not.
      *
-     * @return This UniverseAssumption's equal.
+     * @return Whether this assumption represents an equality or not.
      */
     public boolean isEqual() {
         return equal;
     }
 
     /**
-     * Gives the value of this UniverseAssumption.
+     * Gives the value of the variable in this assumption.
      *
-     * @return This UniverseAssumption's value.
+     * @return The value of the variable in this assumption.
      */
     public T getValue() {
         return value;

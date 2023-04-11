@@ -1,6 +1,6 @@
 /**
- * JUniverse, a solver interface.
- * Copyright (c) 2022 - Univ Artois, CNRS Exakis Nelite.
+ * JUniverse, a universal solver interface.
+ * Copyright (c) 2022-2023 - Univ Artois, CNRS & Exakis Nelite.
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.
- * If not, see {@link http://www.gnu.org/licenses}.
+ * If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.univartois.cril.juniverse.core;
@@ -33,7 +33,7 @@ import fr.univartois.cril.juniverse.core.problem.IUniverseVariable;
  * @author Thibault Falque
  * @author Romain Wallon
  *
- * @version 0.1.0
+ * @version 0.2.0
  */
 public interface IUniverseSolver {
 
@@ -57,11 +57,25 @@ public interface IUniverseSolver {
     Map<String, IUniverseVariable> getVariablesMapping();
 
     /**
+     * Advises this solver to focus on some variables to make decisions.
+     *
+     * @param variables The variables on which to make decisions.
+     */
+    void decisionVariables(List<String> variables);
+
+    /**
      * Gives the number of constraints defined in this solver.
      *
      * @return The number of constraints.
      */
     int nConstraints();
+
+    /**
+     * Checks whether the associated problem is an optimization problem.
+     *
+     * @return Whether the problem is an optimization problem.
+     */
+    boolean isOptimization();
 
     /**
      * Sets the time limit before interrupting the search.
@@ -73,15 +87,14 @@ public interface IUniverseSolver {
     /**
      * Sets the time limit before interrupting the search.
      *
-     * @param mseconds The time limit to set (in milli-seconds).
+     * @param mseconds The time limit to set (in milliseconds).
      */
     void setTimeoutMs(long mseconds);
 
     /**
      * Sets the verbosity level of the solver.
      * Extreme values (outside the range expected by the underlying solver) should be
-     * handled
-     * silently as the minimum or maximum value supported by the solver.
+     * handled silently as the minimum or maximum value supported by the solver.
      *
      * @param level The verbosity level to set.
      */
@@ -93,12 +106,14 @@ public interface IUniverseSolver {
      * @param filename The name of the log file.
      */
     void setLogFile(String filename);
-    
-    
+
+    /**
+     * Loads a problem stored in the given file.
+     * The solver is expected to parse the problem itself.
+     *
+     * @param filename The name of the file containing the problem to solve.
+     */
     void loadInstance(String filename);
-    
-    boolean isOptimization();
-    
 
     /**
      * Solves the problem associated to this solver.
@@ -140,13 +155,21 @@ public interface IUniverseSolver {
     List<BigInteger> solution();
 
     /**
-     * Gives the mapping between the id of the variables and the assignment found by this
-     * solver (if any).
+     * Gives the mapping between the identifiers of the variables and the assignment found
+     * by this solver (if any).
      *
      * @return The solution found by this solver.
      */
     Map<String, BigInteger> mapSolution();
-    
-	Map<String, BigInteger> mapSolution(boolean excludeAux);
+
+    /**
+     * Gives the mapping between the identifiers of the variables and the assignment found
+     * by this solver (if any).
+     *
+     * @param excludeAux Whether auxiliary variables should be excluded from the solution.
+     *
+     * @return The solution found by this solver.
+     */
+    Map<String, BigInteger> mapSolution(boolean excludeAux);
 
 }

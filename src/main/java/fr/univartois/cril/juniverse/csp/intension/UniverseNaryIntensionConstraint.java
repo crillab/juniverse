@@ -1,6 +1,6 @@
 /**
- * JUniverse, a solver interface.
- * Copyright (c) 2022 - Univ Artois, CNRS & Exakis Nelite.
+ * JUniverse, a universal solver interface.
+ * Copyright (c) 2022-2023 - Univ Artois, CNRS & Exakis Nelite.
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.
- * If not, see {@link http://www.gnu.org/licenses}.
+ * If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.univartois.cril.juniverse.csp.intension;
@@ -25,36 +25,35 @@ import java.util.List;
 import fr.univartois.cril.juniverse.csp.operator.UniverseOperator;
 
 /**
- * The NaryIntensionConstraint is an {@link IIntensionConstraint} that applies an
- * operator on several intension constraints.
+ * The UniverseOperatorIntensionConstraint is an {@link IUniverseIntensionConstraint} that
+ * applies an operator on several intension constraints.
  *
  * @author Thibault Falque
  * @author Romain Wallon
  *
- * @version 0.1.0
+ * @version 0.2.0
  */
-public class NaryIntensionConstraint extends UniverseOperatorIntensionConstraint {
+public final class UniverseNaryIntensionConstraint extends UniverseOperatorIntensionConstraint {
 
     /**
      * The intension constraints on which an operator is applied.
      */
-    private List<? extends IIntensionConstraint> children;
+    private List<? extends IUniverseIntensionConstraint> children;
 
     /**
-     * Creates a new NaryIntensionConstraint.
+     * Creates a new UniverseOperatorIntensionConstraint.
      *
      * @param operator The operator applied by the constraint.
      * @param children The intension constraints on which the operator is applied.
      */
-    public NaryIntensionConstraint(UniverseOperator operator,
-            List<? extends IIntensionConstraint> children) {
+    public UniverseNaryIntensionConstraint(UniverseOperator operator,
+            List<? extends IUniverseIntensionConstraint> children) {
         super(operator);
         this.children = children;
     }
 
-
     /**
-     * Gives the arity of this constraints.
+     * Gives the arity of this constraint.
      *
      * @return The number of intension constraints on which the operator is applied.
      */
@@ -62,14 +61,18 @@ public class NaryIntensionConstraint extends UniverseOperatorIntensionConstraint
         return children.size();
     }
 
-
+    /*
+     * (non-Javadoc)
+     *
+     * @see fr.univartois.cril.juniverse.csp.intension.IIntensionConstraint#accept(fr.
+     * univartois.cril.juniverse.csp.intension.IIntensionConstraintVisitor)
+     */
     @Override
-    public void accept(IIntensionConstraintVisitor visitor) {
-        for(IIntensionConstraint c:children) {
+    public void accept(IUniverseIntensionConstraintVisitor visitor) {
+        for (var c : children) {
             c.accept(visitor);
         }
         visitor.visit(this);
-        
     }
 
 }

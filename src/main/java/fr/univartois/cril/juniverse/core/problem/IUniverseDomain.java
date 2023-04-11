@@ -1,6 +1,6 @@
 /**
- * JUniverse, a solver interface.
- * Copyright (c) 2022 - Univ Artois, CNRS & Exakis Nelite.
+ * JUniverse, a universal solver interface.
+ * Copyright (c) 2022-2023 - Univ Artois, CNRS & Exakis Nelite.
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.
- * If not, see {@link http://www.gnu.org/licenses}.
+ * If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.univartois.cril.juniverse.core.problem;
@@ -24,41 +24,42 @@ import java.math.BigInteger;
 import java.util.List;
 
 /**
- * The IUniverseDomain represents the Domain of a Variable in constraint problem.
- * 
+ * The IUniverseDomain represents the domain of a {@link IUniverseVariable} in
+ * a constraint problem.
+ *
  * @author Thibault Falque
  * @author Romain Wallon
  *
- * @version 0.1.0
- * @see IUniverseVariable
+ * @version 0.2.0
  */
 public interface IUniverseDomain {
 
     /**
+     * Gives the number of values of this domain.
+     *
+     * @return The number of values.
+     */
+    long size();
+
+    /**
      * Gives the minimum value of this domain.
-     * 
+     *
      * @return The minimum value.
      */
     BigInteger min();
 
     /**
      * Gives the maximum value of this domain.
-     * 
+     *
      * @return The maximum value.
      */
     BigInteger max();
 
     /**
-     * Gives the number of values of this domain.
-     * 
-     * @return The number of values.
-     */
-    long size();
-
-    /**
      * Gives the list of values of this domain.
-     * 
+     *
      * @return The list of values.
      */
     List<BigInteger> getValues();
+
 }

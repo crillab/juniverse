@@ -1,6 +1,6 @@
 /**
- * JUniverse, a solver interface.
- * Copyright (c) 2022 - Univ Artois, CNRS & Exakis Nelite.
+ * JUniverse, a universal solver interface.
+ * Copyright (c) 2022-2023 - Univ Artois, CNRS & Exakis Nelite.
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -15,7 +15,7 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.
- * If not, see {@link http://www.gnu.org/licenses}.
+ * If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.univartois.cril.juniverse.core.problem;
@@ -23,20 +23,20 @@ package fr.univartois.cril.juniverse.core.problem;
 import java.util.List;
 
 /**
- * The IUniverseConstraint represents a constraint in constraint problem. 
+ * The IUniverseConstraint represents a constraint in constraint problem.
  *
  * @author Thibault Falque
  * @author Romain Wallon
  *
- * @version 0.1.0
+ * @version 0.2.0
  */
 public interface IUniverseConstraint {
 
     /**
      * Gives the scope of this constraint.
-     * 
+     *
      * @return The variables involved in this constraint.
-     * @see IUniverseVariable
      */
     List<IUniverseVariable> scope();
+
 }
