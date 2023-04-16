@@ -1,4 +1,5 @@
 module:fr.univartois.cril.juniverse
+fr.univartois.cril.juniverse.config
 fr.univartois.cril.juniverse.core
 fr.univartois.cril.juniverse.core.problem
 fr.univartois.cril.juniverse.csp
