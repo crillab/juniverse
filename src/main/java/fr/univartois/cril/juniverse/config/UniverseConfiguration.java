@@ -1,6 +1,6 @@
 /**
- * juniverse
- * Copyright (c) 2023 - Romain Wallon.
+ * JUniverse, a universal solver interface.
+ * Copyright (c) 2022-2023 - Univ Artois, CNRS & Exakis Nelite.
  * All rights reserved.
  *
  * This library is free software; you can redistribute it and/or
@@ -15,39 +15,119 @@
  *
  * You should have received a copy of the GNU Lesser General Public
  * License along with this library.
- * If not, see {@link http://www.gnu.org/licenses}.
+ * If not, see <http://www.gnu.org/licenses/>.
  */
 
 package fr.univartois.cril.juniverse.config;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * The UniverseConfiguration
+ * The UniverseConfiguration provides all information for configuring a particular element
+ * of an {@link IUniverseConfigurableSolver}.
  *
+ * @author Thibault Falque
  * @author Romain Wallon
  *
- * @version 0.1.0
+ * @version 0.2.0
  */
 public class UniverseConfiguration {
-    private Map<String,Class<?>> configurationTypeMap;
-    private Map<String,Object> configurationValueMap;
-    private String name;
-    
-    public UniverseConfiguration(String name) {
-        configurationTypeMap=new HashMap<>();
-        configurationValueMap=new HashMap<>();
-        this.name=name;
-    }
-    
-    public void addConfiguration(String key, Object value) {
-        this.configurationTypeMap.put(key, value.getClass());
-        this.configurationValueMap.put(key, value);
-    }
-    
-    public String getName() {
-        return this.name;
-    }
-}
 
+    /**
+     * The name of the strategy being configured.
+     */
+    private final String name;
+
+    /**
+     * The map associating each configuration key to its type.
+     */
+    private final Map<String, Class<?>> parameterTypeMap;
+
+    /**
+     * The map associating each configuration key to its value.
+     */
+    private final Map<String, Object> parameterValueMap;
+
+    /**
+     * Creates a new UniverseConfiguration.
+     *
+     * @param name The name of the strategy being configured.
+     */
+    public UniverseConfiguration(String name) {
+        this.name = name;
+        this.parameterTypeMap = new HashMap<>();
+        this.parameterValueMap = new HashMap<>();
+    }
+
+    /**
+     * Gives the name of the strategy being configured.
+     *
+     * @return The name of the strategy.
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Adds a parameter to this configuration.
+     *
+     * @param key The key identifying the parameter.
+     * @param value The value for the parameter.
+     */
+    public void addParameter(String key, Object value) {
+        parameterTypeMap.put(key, value.getClass());
+        parameterValueMap.put(key, value);
+    }
+
+    /**
+     * Adds a parameter to this configuration.
+     *
+     * @param <T> The type of the parameter.
+     *
+     * @param key The key identifying the parameter.
+     * @param type The type of the parameter.
+     * @param value The value for the parameter.
+     */
+    public <T> void addParameter(String key, Class<T> type, T value) {
+        parameterTypeMap.put(key, type);
+        parameterValueMap.put(key, value);
+    }
+
+    /**
+     * Gives the parameter that are recognized to configure the associated strategy.
+     *
+     * @return The recognized parameter names.
+     */
+    public Collection<String> getParameters() {
+        return parameterTypeMap.keySet();
+    }
+
+    /**
+     * Gives the type of the given parameter.
+     *
+     * @param key The key identifying the parameter.
+     *
+     * @return The type of the parameter.
+     */
+    public Class<?> getTypeOf(String key) {
+        return parameterTypeMap.get(key);
+    }
+
+    /**
+     * Gives the value of the given parameter.
+     *
+     * @param <T> The type of the parameter.
+     *
+     * @param key The key identifying the parameter.
+     *
+     * @return The value of the parameter.
+     */
+    public <T> T get(String key) {
+        @SuppressWarnings("unchecked")
+        T value = (T) parameterValueMap.get(key);
+        return value;
+    }
+
+}

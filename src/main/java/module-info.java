@@ -10,6 +10,8 @@
 
 module fr.univartois.cril.juniverse {
 
+    exports fr.univartois.cril.juniverse.config;
+
     exports fr.univartois.cril.juniverse.core;
 
     exports fr.univartois.cril.juniverse.core.problem;
