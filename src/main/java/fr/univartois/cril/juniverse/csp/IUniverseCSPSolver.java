@@ -3477,19 +3477,6 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * Adds a {@code sum} constraint to this solver.
      *
      * @param expressions The expressions appearing in the constraint.
-     * @param operator The set operator used in the constraint.
-     * @param values The set of allowed values for the sum.
-     *
-     * @throws UniverseContradictionException If adding the constraint results in a
-     *         trivial inconsistency.
-     */
-    void addSumIntensionWithVariableCoefficients(List<IUniverseIntensionConstraint> expressions,
-            UniverseSetBelongingOperator operator, List<BigInteger> values);
-
-    /**
-     * Adds a {@code sum} constraint to this solver.
-     *
-     * @param expressions The expressions appearing in the constraint.
      * @param coefficients The coefficients of the variables in the sum.
      * @param operator The relational operator used in the constraint.
      * @param value The value of the right-hand side of the constraint.
