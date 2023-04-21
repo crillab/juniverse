@@ -1145,7 +1145,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      *         trivial inconsistency.
      */
     void addCumulativeConstantLengthsVariableHeights(List<String> origins, List<BigInteger> lengths,
-            List<BigInteger> heights, UniverseSetBelongingOperator operator, BigInteger min,
+            List<String> heights, UniverseSetBelongingOperator operator, BigInteger min,
             BigInteger max);
 
     /**
@@ -1164,7 +1164,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      *         trivial inconsistency.
      */
     void addCumulativeConstantLengthsVariableHeights(List<String> origins, List<BigInteger> lengths,
-            List<String> ends, List<BigInteger> heights, UniverseSetBelongingOperator operator,
+            List<String> ends, List<String> heights, UniverseSetBelongingOperator operator,
             BigInteger min, BigInteger max);
 
     /**
@@ -1181,7 +1181,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      *         trivial inconsistency.
      */
     void addCumulativeConstantLengthsVariableHeights(List<String> origins, List<BigInteger> lengths,
-            List<BigInteger> heights, UniverseSetBelongingOperator operator, List<BigInteger> set);
+            List<String> heights, UniverseSetBelongingOperator operator, List<BigInteger> set);
 
     /**
      * Adds a {@code cumulative} constraint to this solver.
@@ -1198,7 +1198,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      *         trivial inconsistency.
      */
     void addCumulativeConstantLengthsVariableHeights(List<String> origins, List<BigInteger> lengths,
-            List<String> ends, List<BigInteger> heights, UniverseSetBelongingOperator operator,
+            List<String> ends, List<String> heights, UniverseSetBelongingOperator operator,
             List<BigInteger> set);
 
     /**
