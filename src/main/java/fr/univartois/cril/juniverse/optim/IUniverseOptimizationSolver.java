@@ -22,6 +22,8 @@ package fr.univartois.cril.juniverse.optim;
 
 import java.math.BigInteger;
 
+import fr.univartois.cril.juniverse.core.IUniverseSolver;
+
 /**
  * The IUniversePseudoBooleanSolver interface defines the contract for optimization
  * solvers.
@@ -31,7 +33,7 @@ import java.math.BigInteger;
  *
  * @version 0.2.0
  */
-public interface IUniverseOptimizationSolver {
+public interface IUniverseOptimizationSolver extends IUniverseSolver{
 
     /**
      * Checks whether the underlying problem is a minimization problem.

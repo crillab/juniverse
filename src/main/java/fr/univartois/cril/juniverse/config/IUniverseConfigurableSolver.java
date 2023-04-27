@@ -22,6 +22,8 @@ package fr.univartois.cril.juniverse.config;
 
 import java.util.List;
 
+import fr.univartois.cril.juniverse.core.IUniverseSolver;
+
 /**
  * The IUniverseConfigurableSolver interface defines the contract of a solver that can be
  * configured.
@@ -31,7 +33,7 @@ import java.util.List;
  *
  * @version 0.2.0
  */
-public interface IUniverseConfigurableSolver {
+public interface IUniverseConfigurableSolver extends IUniverseSolver{
 
     /**
      * Gives all "main" solver configurations for this solver.

@@ -20,6 +20,7 @@
 
 package fr.univartois.cril.juniverse.core;
 
+import java.io.OutputStream;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
@@ -106,6 +107,13 @@ public interface IUniverseSolver {
      * @param filename The name of the log file.
      */
     void setLogFile(String filename);
+    
+    /**
+     * Sets the output stream to be used by the solver.
+     *
+     * @param stream The output stream.
+     */
+    void setLogStream(OutputStream stream);
 
     /**
      * Loads a problem stored in the given file.
