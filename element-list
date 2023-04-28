@@ -5,6 +5,7 @@ fr.univartois.cril.juniverse.core.problem
 fr.univartois.cril.juniverse.csp
 fr.univartois.cril.juniverse.csp.intension
 fr.univartois.cril.juniverse.csp.operator
+fr.univartois.cril.juniverse.listener
 fr.univartois.cril.juniverse.optim
 fr.univartois.cril.juniverse.pb
 fr.univartois.cril.juniverse.sat
