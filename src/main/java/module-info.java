@@ -22,6 +22,8 @@ module fr.univartois.cril.juniverse {
 
     exports fr.univartois.cril.juniverse.csp.operator;
 
+    exports fr.univartois.cril.juniverse.listener;
+
     exports fr.univartois.cril.juniverse.optim;
 
     exports fr.univartois.cril.juniverse.pb;

@@ -33,7 +33,7 @@ import fr.univartois.cril.juniverse.core.IUniverseSolver;
  *
  * @version 0.2.0
  */
-public interface IUniverseOptimizationSolver extends IUniverseSolver{
+public interface IUniverseOptimizationSolver extends IUniverseSolver {
 
     /**
      * Checks whether the underlying problem is a minimization problem.

@@ -26,6 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 import fr.univartois.cril.juniverse.core.problem.IUniverseVariable;
+import fr.univartois.cril.juniverse.listener.IUniverseSearchListener;
 
 /**
  * The IUniverseSolver interface is the root interface defining the base contract
@@ -102,16 +103,29 @@ public interface IUniverseSolver {
     void setVerbosity(int level);
 
     /**
+     * Adds a listener to this solver, which listens to the events occurring in
+     * the solver during the search.
+     *
+     * @param listener The listener to add.
+     *
+     * @throws UnsupportedOperationException If this solver does not support
+     *         search events.
+     */
+    default void addSearchListener(IUniverseSearchListener listener) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
      * Sets the log file to be used by the solver.
      *
      * @param filename The name of the log file.
      */
     void setLogFile(String filename);
-    
+
     /**
-     * Sets the output stream to be used by the solver.
+     * Sets the output stream to be used by the solver for logging.
      *
-     * @param stream The output stream.
+     * @param stream The logging output stream.
      */
     void setLogStream(OutputStream stream);
 

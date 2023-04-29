@@ -33,7 +33,7 @@ import fr.univartois.cril.juniverse.core.IUniverseSolver;
  *
  * @version 0.2.0
  */
-public interface IUniverseConfigurableSolver extends IUniverseSolver{
+public interface IUniverseConfigurableSolver extends IUniverseSolver {
 
     /**
      * Gives all "main" solver configurations for this solver.
