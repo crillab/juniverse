@@ -33,7 +33,8 @@ import java.util.List;
 public interface IUniverseConstraint {
 
     /**
-     * Gives the scope of this constraint.
+     * Gives the scope of this constraint, i.e., the variables that appear in
+     * this constraint.
      *
      * @return The variables involved in this constraint.
      */

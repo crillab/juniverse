@@ -58,7 +58,7 @@ public interface IUniverseOptimizationSolver extends IUniverseSolver {
     void setLowerBound(BigInteger lb);
 
     /**
-     * Gives the current lower bound of the underlying optimization problem.
+     * Gives the current (best) lower bound of the underlying optimization problem.
      *
      * @return The current lower bound.
      */
@@ -72,16 +72,20 @@ public interface IUniverseOptimizationSolver extends IUniverseSolver {
     void setUpperBound(BigInteger ub);
 
     /**
-     * Gives the current upper bound of the underlying optimization problem.
+     * Gives the current (best) upper bound of the underlying optimization problem.
      *
      * @return The current upper bound.
      */
     BigInteger getUpperBound();
 
     /**
-     * Gives the current best bound of the underlying optimization problem.
+     * Gives the current (best) bound that have been found by this solver.
+     * It is the current lower or upper bound, depending on whether the problem is a
+     * minimization or maximization problem.
      *
      * @return The current best bound.
+     *
+     * @see #isMinimization()
      */
     BigInteger getCurrentBound();
 

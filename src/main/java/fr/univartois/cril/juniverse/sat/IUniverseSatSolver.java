@@ -43,7 +43,7 @@ import fr.univartois.cril.juniverse.core.UniverseSolverResult;
 public interface IUniverseSatSolver extends IUniverseSolver {
 
     /**
-     * Creates a clause from a set of literals.
+     * Adds to this solver a clause from a set of literals.
      * The literals are represented by non-null integers such that opposite literals are
      * represented by opposite values (using the classical DIMACS way of representing
      * literals).
@@ -55,7 +55,7 @@ public interface IUniverseSatSolver extends IUniverseSolver {
     void addClause(List<Integer> literals);
 
     /**
-     * Creates clauses from a set of set of literals.
+     * Adds to this solver several clauses from a set of sets of literals.
      * This is convenient to create in a single call all the clauses.
      * It is mainly a loop to {@link #addClause(List)}.
      *

@@ -177,7 +177,7 @@ public interface IUniverseSolver {
     List<BigInteger> solution();
 
     /**
-     * Gives the mapping between the identifiers of the variables and the assignment found
+     * Gives the mapping between the names of the variables and the assignment found
      * by this solver (if any).
      *
      * @return The solution found by this solver.
@@ -185,7 +185,7 @@ public interface IUniverseSolver {
     Map<String, BigInteger> mapSolution();
 
     /**
-     * Gives the mapping between the identifiers of the variables and the assignment found
+     * Gives the mapping between the names of the variables and the assignment found
      * by this solver (if any).
      *
      * @param excludeAux Whether auxiliary variables should be excluded from the solution.

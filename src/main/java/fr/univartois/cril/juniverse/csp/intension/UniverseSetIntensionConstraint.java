@@ -64,8 +64,8 @@ public final class UniverseSetIntensionConstraint implements IUniverseIntensionC
      */
     @Override
     public void accept(IUniverseIntensionConstraintVisitor visitor) {
-        for (var element : constraints) {
-            element.accept(visitor);
+        for (var constraint : constraints) {
+            constraint.accept(visitor);
         }
         visitor.visit(this);
     }

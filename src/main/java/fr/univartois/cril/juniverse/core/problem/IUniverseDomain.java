@@ -35,9 +35,9 @@ import java.util.List;
 public interface IUniverseDomain {
 
     /**
-     * Gives the number of values of this domain.
+     * Gives the size of this domain, measured in number of values.
      *
-     * @return The number of values.
+     * @return The size of this domain.
      */
     long size();
 

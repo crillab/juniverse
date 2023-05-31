@@ -32,6 +32,20 @@ package fr.univartois.cril.juniverse.csp.intension;
 public interface IUniverseIntensionConstraintVisitor {
 
     /**
+     * Visits a constant that appears in an {@code intension} constraint.
+     *
+     * @param constant The constant to visit.
+     */
+    void visit(UniverseConstantIntensionConstraint constant);
+
+    /**
+     * Visits a variable that appears in an {@code intension} constraint.
+     *
+     * @param variable The variable to visit.
+     */
+    void visit(UniverseVariableIntensionConstraint variable);
+
+    /**
      * Visits a unary constraint that appears in an {@code intension} constraint.
      *
      * @param constr The constraint to visit.
@@ -72,19 +86,5 @@ public interface IUniverseIntensionConstraintVisitor {
      * @param range The range to visit.
      */
     void visit(UniverseRangeIntensionConstraint range);
-
-    /**
-     * Visits a variable that appears in an {@code intension} constraint.
-     *
-     * @param variable The variable to visit.
-     */
-    void visit(UniverseVariableIntensionConstraint variable);
-
-    /**
-     * Visits a constant that appears in an {@code intension} constraint.
-     *
-     * @param constant The constant to visit.
-     */
-    void visit(UniverseConstantIntensionConstraint constant);
 
 }

@@ -31,8 +31,7 @@ import fr.univartois.cril.juniverse.csp.operator.UniverseSetBelongingOperator;
 
 /**
  * The UniverseIntensionConstraintFactory makes easier the construction of {@code intension}
- * constraints from the solver's API, by providing a functional notation similar to that
- * used to define the constraints using XCSP3.
+ * constraints from the solver's API, by providing a functional notation.
  *
  * @author Thibault Falque
  * @author Romain Wallon
@@ -200,7 +199,7 @@ public final class UniverseIntensionConstraintFactory {
     /**
      * Creates an {@code intension} constraint applying the {@code power} operator.
      *
-     * @param constr The left constraint on which the operator is applied.
+     * @param constr The constraint on which the operator is applied.
      * @param exponent The exponent in the power operation
      *
      * @return The created {@code intension} constraint.
@@ -482,39 +481,39 @@ public final class UniverseIntensionConstraintFactory {
 
     /**
      * Creates an {@code intension} constraint applying the {@code in} operator w.r.t. a
-     * set.
+     * set of values.
      *
-     * @param constraint The constraint that should be in the range.
-     * @param constrs The constraints in the set.
+     * @param constraint The constraint that should be in the set.
+     * @param set The constraints in the set.
      *
      * @return The created {@code intension} constraint.
      */
     public static IUniverseIntensionConstraint in(IUniverseIntensionConstraint constraint,
-            IUniverseIntensionConstraint... constrs) {
+            IUniverseIntensionConstraint... set) {
         return binary(UniverseSetBelongingOperator.IN, constraint,
-                new UniverseSetIntensionConstraint(List.of(constrs)));
+                new UniverseSetIntensionConstraint(List.of(set)));
     }
 
     /**
      * Creates an {@code intension} constraint applying the {@code in} operator w.r.t. a
      * set.
      *
-     * @param constraint The constraint that should be in the range.
-     * @param constrs The constraints in the set.
+     * @param constraint The constraint that should be in the set.
+     * @param set The constraints in the set.
      *
      * @return The created {@code intension} constraint.
      */
     public static IUniverseIntensionConstraint in(IUniverseIntensionConstraint constraint,
-            List<IUniverseIntensionConstraint> constrs) {
+            List<IUniverseIntensionConstraint> set) {
         return binary(UniverseSetBelongingOperator.IN, constraint,
-                new UniverseSetIntensionConstraint(constrs));
+                new UniverseSetIntensionConstraint(set));
     }
 
     /**
      * Creates an {@code intension} constraint applying the {@code not-in} operator w.r.t.
      * a range of values.
      *
-     * @param constraint The constraint that should be in the range.
+     * @param constraint The constraint that should not be in the range.
      * @param min The minimum value in the range.
      * @param max The maximum value in the range.
      *
@@ -530,30 +529,30 @@ public final class UniverseIntensionConstraintFactory {
      * Creates an {@code intension} constraint applying the {@code not-in} operator w.r.t.
      * a set.
      *
-     * @param constraint The constraint that should be in the range.
-     * @param constrs The constraints in the set.
+     * @param constraint The constraint that should not be in the set.
+     * @param set The constraints in the set.
      *
      * @return The created {@code intension} constraint.
      */
     public static IUniverseIntensionConstraint notIn(IUniverseIntensionConstraint constraint,
-            IUniverseIntensionConstraint... constrs) {
+            IUniverseIntensionConstraint... set) {
         return binary(UniverseSetBelongingOperator.NOT_IN, constraint,
-                new UniverseSetIntensionConstraint(List.of(constrs)));
+                new UniverseSetIntensionConstraint(List.of(set)));
     }
 
     /**
      * Creates an {@code intension} constraint applying the {@code not-in} operator w.r.t.
      * a set.
      *
-     * @param constraint The constraint that should be in the range.
-     * @param constrs The constraints in the set.
+     * @param constraint The constraint that should not be in the set.
+     * @param set The constraints in the set.
      *
      * @return The created {@code intension} constraint.
      */
     public static IUniverseIntensionConstraint notIn(IUniverseIntensionConstraint constraint,
-            List<IUniverseIntensionConstraint> constrs) {
+            List<IUniverseIntensionConstraint> set) {
         return binary(UniverseSetBelongingOperator.NOT_IN, constraint,
-                new UniverseSetIntensionConstraint(constrs));
+                new UniverseSetIntensionConstraint(set));
     }
 
     /**

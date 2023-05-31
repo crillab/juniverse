@@ -21,9 +21,10 @@
 package fr.univartois.cril.juniverse.core;
 
 /**
- * The UniverseAssumption represents an assumption made when solving constraint problems.
+ * The UniverseAssumption represents a solving assumption, i.e., an hypothesis made about
+ * the assignment of a variable.
  *
- * @param <T> The type of the assumed value.
+ * @param <T> The type of the value used in the hypothesis.
  *
  * @author Thibault Falque
  * @author Romain Wallon
@@ -33,25 +34,25 @@ package fr.univartois.cril.juniverse.core;
 public final class UniverseAssumption<T> {
 
     /**
-     * The identifier of the variable involved in this assumption.
+     * The name of the variable involved in this assumption.
      */
     private String variableId;
 
     /**
-     * Whether this assumption represents an equality or not.
+     * Whether this assumption represents an equality.
      */
     private boolean equal;
 
     /**
-     * The value of the variable in this assumption.
+     * The assumed value.
      */
     private T value;
 
     /**
      * Creates a new UniverseAssumption.
      *
-     * @param variableId The identifier of the variable involved in this assumption.
-     * @param equal Whether this assumption represents an equality or not.
+     * @param variableId The name of the variable involved in the assumption.
+     * @param equal Whether this assumption represents an equality.
      * @param value The value of the variable in this assumption.
      */
     public UniverseAssumption(String variableId, boolean equal, T value) {
@@ -61,27 +62,27 @@ public final class UniverseAssumption<T> {
     }
 
     /**
-     * Gives the identifier of the variable involved in this assumption.
+     * Gives the name of the variable involved in this assumption.
      *
-     * @return The identifier of the variable involved in this assumption.
+     * @return The name of the variable involved in this assumption.
      */
     public String getVariableId() {
         return variableId;
     }
 
     /**
-     * Checks whether this assumption represents an equality or not.
+     * Checks whether this assumption represents an equality.
      *
-     * @return Whether this assumption represents an equality or not.
+     * @return Whether this assumption represents an equality.
      */
     public boolean isEqual() {
         return equal;
     }
 
     /**
-     * Gives the value of the variable in this assumption.
+     * Gives the assumed value.
      *
-     * @return The value of the variable in this assumption.
+     * @return The assumed value.
      */
     public T getValue() {
         return value;

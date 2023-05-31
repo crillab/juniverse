@@ -21,7 +21,7 @@
 package fr.univartois.cril.juniverse.csp;
 
 /**
- * The UniverseTransition representation a transition in a constraint representing an
+ * The UniverseTransition represents a transition in a constraint representing an
  * automaton.
  *
  * @author Thibault Falque

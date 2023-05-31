@@ -156,9 +156,9 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * Adds a {@code logical} constraint to this solver.
      *
      * @param variable The (Boolean) variable whose assignment depends on the truth
-     *        value of the logical operations.
+     *        value of the logical operation.
      * @param equiv Whether {@code variable} must be equivalent to the truth
-     *        value of the logical operations.
+     *        value of the logical operation.
      * @param operator The Boolean operator to apply on the variables.
      * @param variables The (Boolean) variables on which the operator is applied.
      *
@@ -524,7 +524,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @param variables The variables to count the assignments of.
      * @param values The values to count the assignments of.
      * @param operator The operator to use to check whether the number of assignments is
-     *        within a set.
+     *        within a range.
      * @param min The minimum number of times the value can be assigned among
      *        the variables.
      * @param max The maximum number of times the value can be assigned among
@@ -590,7 +590,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @param variables The variables to count the assignments of.
      * @param values The variables encoding the values to count the assignments of.
      * @param operator The operator to use to check whether the number of assignments is
-     *        within a set.
+     *        within a range.
      * @param min The minimum number of times the value can be assigned among
      *        the variables.
      * @param max The maximum number of times the value can be assigned among
@@ -656,7 +656,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @param expressions The expressions to count the assignments of.
      * @param values The values to count the assignments of.
      * @param operator The operator to use to check whether the number of assignments is
-     *        within a set.
+     *        within a range.
      * @param min The minimum number of times the value can be assigned among
      *        the variables.
      * @param max The maximum number of times the value can be assigned among
@@ -771,7 +771,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      *
      * @param variables The variables appearing in the constraint.
      * @param operator The set operator used in the constraint.
-     * @param set The allowed number of distinct values.
+     * @param set The allowed numbers of distinct values.
      *
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
@@ -784,7 +784,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      *
      * @param variables The variables appearing in the constraint.
      * @param operator The set operator used in the constraint.
-     * @param set The allowed number of distinct values.
+     * @param set The allowed numbers of distinct values.
      * @param except The values that should not be counted.
      *
      * @throws UniverseContradictionException If adding the constraint results in a
@@ -838,7 +838,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      *
      * @param expressions The expressions appearing in the constraint.
      * @param operator The set operator used in the constraint.
-     * @param set The allowed number of distinct values.
+     * @param set The allowed numbers of distinct values.
      *
      * @throws UniverseContradictionException If adding the constraint results in a
      *         trivial inconsistency.
@@ -1002,7 +1002,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @param lengths The lengths of the tasks to assign.
      * @param heights The heights of the tasks to assign.
      * @param operator The operator to use to check whether the cumulative use is
-     *        within a set.
+     *        within a range.
      * @param min The minimum cumulative use.
      * @param max The maximum cumulative use.
      *
@@ -1021,7 +1021,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @param ends The variables encoding the ends of the resources.
      * @param heights The heights of the tasks to assign.
      * @param operator The operator to use to check whether the cumulative use is
-     *        within a set.
+     *        within a range.
      * @param min The minimum cumulative use.
      * @param max The maximum cumulative use.
      *
@@ -1137,7 +1137,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @param lengths The lengths of the tasks to assign.
      * @param heights The variable encoding the heights of the tasks to assign.
      * @param operator The operator to use to check whether the cumulative use is
-     *        within a set.
+     *        within a range.
      * @param min The minimum cumulative use.
      * @param max The maximum cumulative use.
      *
@@ -1156,7 +1156,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @param ends The variables encoding the ends of the resources.
      * @param heights The variable encoding the heights of the tasks to assign.
      * @param operator The operator to use to check whether the cumulative use is
-     *        within a set.
+     *        within a range.
      * @param min The minimum cumulative use.
      * @param max The maximum cumulative use.
      *
@@ -1272,7 +1272,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @param lengths The variables encoding the lengths of the tasks to assign.
      * @param heights The heights of the tasks to assign.
      * @param operator The operator to use to check whether the cumulative use is
-     *        within a set.
+     *        within a range.
      * @param min The minimum cumulative use.
      * @param max The maximum cumulative use.
      *
@@ -1291,7 +1291,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @param ends The variables encoding the ends of the resources.
      * @param heights The heights of the tasks to assign.
      * @param operator The operator to use to check whether the cumulative use is
-     *        within a set.
+     *        within a range.
      * @param min The minimum cumulative use.
      * @param max The maximum cumulative use.
      *
@@ -1407,7 +1407,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @param lengths The variables encoding the lengths of the tasks to assign.
      * @param heights The variables encoding the heights of the tasks to assign.
      * @param operator The operator to use to check whether the cumulative use is
-     *        within a set.
+     *        within a range.
      * @param min The minimum cumulative use.
      * @param max The maximum cumulative use.
      *
@@ -2175,6 +2175,9 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * Adds a {@code precedence} constraint to this solver.
      *
      * @param variables The variables appearing in the constraint.
+     *
+     * @throws UniverseContradictionException If adding the constraint results in a
+     *         trivial inconsistency.
      */
     void addPrecedence(List<String> variables);
 
@@ -2192,7 +2195,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
     void addPrecedence(List<String> variables, List<BigInteger> values, boolean covered);
 
     /**
-     * Adds an {@code extension} constraint describing the support of a tuple of variables
+     * Adds an {@code extension} constraint describing the support of a variable
      * to this solver.
      *
      * @param variable The variable for which the support is given.
@@ -2204,7 +2207,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
     void addSupport(String variable, List<BigInteger> allowedValues);
 
     /**
-     * Adds an {@code extension} constraint describing the support of a tuple of variables
+     * Adds an {@code extension} constraint describing the support of a variable
      * to this solver.
      *
      * @param variable The variable for which the support is given.
@@ -2244,8 +2247,8 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
     void addSupportSymbolic(List<String> variableTuple, List<List<String>> allowedValues);
 
     /**
-     * Adds an {@code extension} constraint describing the conflicts of a tuple of
-     * variables to this solver.
+     * Adds an {@code extension} constraint describing the conflicts of a
+     * variable to this solver.
      *
      * @param variable The variable for which the conflicts are given.
      * @param forbiddenValues The values forbidden for the variable.
@@ -2256,8 +2259,8 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
     void addConflicts(String variable, List<BigInteger> forbiddenValues);
 
     /**
-     * Adds an {@code extension} constraint describing the conflicts of a tuple of
-     * variables to this solver.
+     * Adds an {@code extension} constraint describing the conflicts of a
+     * variable to this solver.
      *
      * @param variable The variable for which the conflicts are given.
      * @param forbiddenValues The values forbidden for the variable.
@@ -2400,20 +2403,6 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      * @param variable The variable appearing in the constraint.
      * @param operator The operator defining whether the values are allowed or
      *        forbidden.
-     * @param values The set of values on which the operator is applied.
-     *
-     * @throws UniverseContradictionException If adding the constraint results in a
-     *         trivial inconsistency.
-     */
-    void addPrimitive(String variable, UniverseSetBelongingOperator operator,
-            List<BigInteger> values);
-
-    /**
-     * Adds a {@code primitive} constraint to this solver.
-     *
-     * @param variable The variable appearing in the constraint.
-     * @param operator The operator defining whether the values are allowed or
-     *        forbidden.
      * @param min The minimum value of the range on which the operator is
      *        applied.
      * @param max The maximum value of the range on which the operator is
@@ -2424,6 +2413,20 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
      */
     void addPrimitive(String variable, UniverseSetBelongingOperator operator, BigInteger min,
             BigInteger max);
+
+    /**
+     * Adds a {@code primitive} constraint to this solver.
+     *
+     * @param variable The variable appearing in the constraint.
+     * @param operator The operator defining whether the values are allowed or
+     *        forbidden.
+     * @param values The set of values on which the operator is applied.
+     *
+     * @throws UniverseContradictionException If adding the constraint results in a
+     *         trivial inconsistency.
+     */
+    void addPrimitive(String variable, UniverseSetBelongingOperator operator,
+            List<BigInteger> values);
 
     /**
      * Adds a {@code minimum} constraint to this solver.
@@ -3684,19 +3687,19 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
     void minimizeVariable(String variable);
 
     /**
+     * Adds an objective function to this solver to minimize the value of an expression.
+     *
+     * @param expression The expression to minimize the value of.
+     */
+    void minimizeExpression(IUniverseIntensionConstraint expression);
+
+    /**
      * Adds an objective function to this solver to maximize the value assigned to a
      * variable.
      *
      * @param variable The variable to maximize the value of.
      */
     void maximizeVariable(String variable);
-
-    /**
-     * Adds an objective function to this solver to minimize the value of an expression.
-     *
-     * @param expression The expression to minimize the value of.
-     */
-    void minimizeExpression(IUniverseIntensionConstraint expression);
 
     /**
      * Adds an objective function to this solver to maximize the value of an expression.
@@ -3972,7 +3975,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
 
     /**
      * Adds an objective function to this solver to minimize the number of values assigned
-     * to variables.
+     * to expressions.
      *
      * @param expressions The expressions to minimize the number of values of.
      */
@@ -3980,7 +3983,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
 
     /**
      * Adds an objective function to this solver to minimize the number of values assigned
-     * to variables.
+     * to expressions.
      *
      * @param expressions The expressions to minimize the number of values of.
      * @param coefficients The coefficients of the expressions.
@@ -4007,7 +4010,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
 
     /**
      * Adds an objective function to this solver to maximize the number of values assigned
-     * to variables.
+     * to expressions.
      *
      * @param expressions The expressions to maximize the number of values of.
      */
@@ -4015,7 +4018,7 @@ public interface IUniverseCSPSolver extends IUniversePseudoBooleanSolver {
 
     /**
      * Adds an objective function to this solver to maximize the number of values assigned
-     * to variables.
+     * to expressions.
      *
      * @param expressions The expressions to maximize the number of values of.
      * @param coefficients The coefficients of the expressions.
