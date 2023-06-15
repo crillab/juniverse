@@ -64,6 +64,14 @@ public interface IUniverseSolver {
      * @param variables The variables on which to make decisions.
      */
     void decisionVariables(List<String> variables);
+    
+    
+    /**
+     * Force static order on values for specific variables. 
+     * @param vars Variables for which a static order is added 
+     * @param order List of values in desired order
+     */
+    void valueHeuristicStatic(List<String> vars, List<? extends Number> order);
 
     /**
      * Gives the number of constraints defined in this solver.
