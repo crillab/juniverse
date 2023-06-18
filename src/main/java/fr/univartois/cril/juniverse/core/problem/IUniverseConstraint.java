@@ -40,4 +40,11 @@ public interface IUniverseConstraint {
      */
     List<IUniverseVariable> scope();
 
+    /**
+     * Gives the score of this constraint, as computed by the solver.
+     *
+     * @return The score of the constraint.
+     */
+    double getScore();
+
 }
