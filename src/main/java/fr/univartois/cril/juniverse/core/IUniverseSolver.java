@@ -59,19 +59,29 @@ public interface IUniverseSolver {
     Map<String, IUniverseVariable> getVariablesMapping();
 
     /**
+     * Gives the list of the auxiliary variables used by the solver.
+     * These variables are those that the solver defines to help its representation (for
+     * instance, to reify constraints).
+     *
+     * @return The list of the auxiliary variables, given by their name.
+     */
+    List<String> getAuxiliaryVariables();
+
+    /**
      * Advises this solver to focus on some variables to make decisions.
      *
      * @param variables The variables on which to make decisions.
      */
     void decisionVariables(List<String> variables);
-    
-    
+
     /**
-     * Force static order on values for specific variables. 
-     * @param vars Variables for which a static order is added 
-     * @param order List of values in desired order
+     * Forces a static order on the values to try for some variables.
+     *
+     * @param variables The variables for which a static order is set.
+     * @param orderedValues The values to try for the specified variables, in the desired
+     *        order.
      */
-    void valueHeuristicStatic(List<String> vars, List<? extends Number> order);
+    void valueHeuristicStatic(List<String> variables, List<? extends Number> orderedValues);
 
     /**
      * Gives the number of constraints defined in this solver.
@@ -120,6 +130,19 @@ public interface IUniverseSolver {
      *         search events.
      */
     default void addSearchListener(IUniverseSearchListener listener) {
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Removes a listener from this solver, so that the listener does not listen to
+     * the events occurring in the solver during the search anymore.
+     *
+     * @param listener The listener to remove.
+     *
+     * @throws UnsupportedOperationException If this solver does not support
+     *         search events.
+     */
+    default void removeSearchListener(IUniverseSearchListener listener) {
         throw new UnsupportedOperationException();
     }
 
@@ -201,5 +224,25 @@ public interface IUniverseSolver {
      * @return The solution found by this solver.
      */
     Map<String, BigInteger> mapSolution(boolean excludeAux);
+
+    /**
+     * Checks the last solution that has been computed by the solver.
+     * Said differently, this method ensures that the last solution satisfies all the
+     * constraints of the problem solved by the solver.
+     *
+     * @return Whether the last solution is correct.
+     */
+    boolean checkSolution();
+
+    /**
+     * Checks whether the given assignment to make sure it is a solution of the problem.
+     * Said differently, this method ensures that the given assignment satisfies all the
+     * constraints of the problem solved by the solver.
+     *
+     * @param assignment The assignment to check as a solution.
+     *
+     * @return Whether the given assignment is a solution of the problem.
+     */
+    boolean checkSolution(Map<String, BigInteger> assignment);
 
 }
