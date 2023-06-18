@@ -56,4 +56,14 @@ public interface IUniverseSolverFactory {
      */
     IUniverseCSPSolver createCspSolver();
 
+    /**
+     * Gives a String representation of this factory, allowing to easily identify which
+     * solvers are instantiated by this factory.
+     * All implementations of IUniverseSolverFactory should redefine {@link #toString()}.
+     *
+     * @return The String representation of this factory.
+     */
+    @Override
+    String toString();
+
 }
