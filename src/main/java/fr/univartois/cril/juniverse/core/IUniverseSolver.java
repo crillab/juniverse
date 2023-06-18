@@ -60,8 +60,8 @@ public interface IUniverseSolver {
 
     /**
      * Gives the list of the auxiliary variables used by the solver.
-     * These variables are those that the solver defines to help its representation (for
-     * instance, to reify constraints).
+     * These variables are those that the solver defines to help it represent the
+     * problem (for instance, to reify constraints).
      *
      * @return The list of the auxiliary variables, given by their name.
      */
@@ -235,7 +235,7 @@ public interface IUniverseSolver {
     boolean checkSolution();
 
     /**
-     * Checks whether the given assignment to make sure it is a solution of the problem.
+     * Checks whether the given assignment is a solution of the problem.
      * Said differently, this method ensures that the given assignment satisfies all the
      * constraints of the problem solved by the solver.
      *

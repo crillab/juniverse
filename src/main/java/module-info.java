@@ -2,6 +2,8 @@
  * The {@code fr.univartois.cril.juniverse} module provides universal interfaces for
  * solving constraint problems.
  *
+ * @uses fr.univartois.cril.juniverse.utils.IUniverseSolverFactory
+ *
  * @author Thibault Falque
  * @author Romain Wallon
  *
@@ -9,6 +11,8 @@
  */
 
 module fr.univartois.cril.juniverse {
+
+    // Exported packages.
 
     exports fr.univartois.cril.juniverse.config;
 
@@ -31,5 +35,9 @@ module fr.univartois.cril.juniverse {
     exports fr.univartois.cril.juniverse.sat;
 
     exports fr.univartois.cril.juniverse.utils;
+
+    // Solver factories can be easily retrieve when using IUniverseSolverFactory.
+
+    uses fr.univartois.cril.juniverse.utils.IUniverseSolverFactory;
 
 }
