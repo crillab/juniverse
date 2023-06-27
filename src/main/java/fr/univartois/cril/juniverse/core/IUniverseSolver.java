@@ -25,6 +25,7 @@ import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
 
+import fr.univartois.cril.juniverse.core.problem.IUniverseConstraint;
 import fr.univartois.cril.juniverse.core.problem.IUniverseVariable;
 import fr.univartois.cril.juniverse.listener.IUniverseSearchListener;
 
@@ -66,6 +67,13 @@ public interface IUniverseSolver {
      * @return The list of the auxiliary variables, given by their name.
      */
     List<String> getAuxiliaryVariables();
+
+    /**
+     * Gives the list of the constraints in this solver.
+     *
+     * @return The list of the constraints.
+     */
+    List<IUniverseConstraint> getConstraints();
 
     /**
      * Advises this solver to focus on some variables to make decisions.
