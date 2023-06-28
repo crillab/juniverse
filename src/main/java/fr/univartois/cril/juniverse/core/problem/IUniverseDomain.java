@@ -56,10 +56,17 @@ public interface IUniverseDomain {
     BigInteger max();
 
     /**
-     * Gives the list of values of this domain.
+     * Gives the list of values of the initial domain.
      *
      * @return The list of values.
      */
     List<BigInteger> getValues();
+    
+    /**
+     * Gives the list of values of the current domain.
+     *
+     * @return The list of current values.
+     */
+    List<BigInteger> getCurrentValues();
 
 }
