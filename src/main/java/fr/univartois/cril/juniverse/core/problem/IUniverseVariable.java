@@ -20,6 +20,8 @@
 
 package fr.univartois.cril.juniverse.core.problem;
 
+import java.util.List;
+
 /**
  * The IUniverseVariable represents a variable in a constraint problem.
  *
@@ -50,5 +52,12 @@ public interface IUniverseVariable {
      * @return The domain of this variable.
      */
     IUniverseDomain getDomain();
+
+    /**
+     * Gives the constraints containing this variable.
+     *
+     * @return The constraints of this variable.
+     */
+    List<IUniverseConstraint> getConstraints();
 
 }
