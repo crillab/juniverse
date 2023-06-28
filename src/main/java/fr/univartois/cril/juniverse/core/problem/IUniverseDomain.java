@@ -40,6 +40,13 @@ public interface IUniverseDomain {
      * @return The size of this domain.
      */
     long size();
+    
+    /**
+     * Gives the current size of this domain, measured in number of values.
+     *
+     * @return The current size of this domain.
+     */
+    long currentSize();
 
     /**
      * Gives the minimum value of this domain.
