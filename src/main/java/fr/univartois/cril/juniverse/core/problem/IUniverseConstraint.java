@@ -32,19 +32,33 @@ import java.util.List;
  */
 public interface IUniverseConstraint {
 
-    /**
-     * Gives the scope of this constraint, i.e., the variables that appear in
-     * this constraint.
-     *
-     * @return The variables involved in this constraint.
-     */
-    List<IUniverseVariable> scope();
+	/**
+	 * Gives the scope of this constraint, i.e., the variables that appear in this
+	 * constraint.
+	 *
+	 * @return The variables involved in this constraint.
+	 */
+	List<IUniverseVariable> scope();
 
-    /**
-     * Gives the score of this constraint, as computed by the solver.
-     *
-     * @return The score of the constraint.
-     */
-    double getScore();
+	/**
+	 * Sets whether this constraint must be ignored by the solver.
+	 *
+	 * @param ignored Whether the constraint should be ignored.
+	 */
+	void setIgnored(boolean ignored);
+
+	/**
+	 * Checks whether this constraint must be ignored by the solver.
+	 *
+	 * @return Whether the constraint should be ignored.
+	 */
+	boolean isIgnored();
+
+	/**
+	 * Gives the score of this constraint, as computed by the solver.
+	 *
+	 * @return The score of the constraint.
+	 */
+	double getScore();
 
 }

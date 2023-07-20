@@ -75,5 +75,35 @@ public interface IUniverseDomain {
      * @return The list of current values.
      */
     List<BigInteger> getCurrentValues();
+    
+    /**
+     * Keeps in this domain only the values between {@code min} and {@code max}.
+     * 
+     * @param min The minimum value to keep (included).
+     * @param max The maximum value to keep (excluded).
+     */
+    void keepValues(BigInteger min, BigInteger max);
 
+    /**
+     * Keeps in this domain only the values between {@code values}.
+     * 
+     * @param values The list of values to keep.
+     */
+    void keepValues(List<BigInteger> values);
+
+    /**
+     * Removes from this domain all the values between {@code min} and {@code max}.
+     * 
+     * @param min The minimum value to remove (included).
+     * @param max The maximum value to remove (excluded).
+     */
+    void removeValues(BigInteger min, BigInteger max);
+
+    /**
+     * Removes from this domain all the values in {@code values}.
+     * 
+     * @param values The list of values to remove.
+     */
+    void removeValues(List<BigInteger> values);
+    
 }
