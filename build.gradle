@@ -23,8 +23,8 @@ version = "0.2.13"
 
 ext.moduleName = "fr.univartois.cril.juniverse"
 
-sourceCompatibility = "10"
-targetCompatibility = "10"
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
 
 /*************************
  * Eclipse Configuration *
