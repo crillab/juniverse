@@ -69,7 +69,7 @@ public final class UniverseNaryIntensionConstraint extends UniverseOperatorInten
      */
     @Override
     public void accept(IUniverseIntensionConstraintVisitor visitor) {
-        for (var c : children) {
+        for (IUniverseIntensionConstraint c : children) {
             c.accept(visitor);
         }
         visitor.visit(this);

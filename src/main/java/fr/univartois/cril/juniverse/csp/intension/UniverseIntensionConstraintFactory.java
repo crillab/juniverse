@@ -21,6 +21,7 @@
 package fr.univartois.cril.juniverse.csp.intension;
 
 import java.math.BigInteger;
+import java.util.Arrays;
 import java.util.List;
 
 import fr.univartois.cril.juniverse.csp.operator.UniverseArithmeticOperator;
@@ -491,7 +492,7 @@ public final class UniverseIntensionConstraintFactory {
     public static IUniverseIntensionConstraint in(IUniverseIntensionConstraint constraint,
             IUniverseIntensionConstraint... set) {
         return binary(UniverseSetBelongingOperator.IN, constraint,
-                new UniverseSetIntensionConstraint(List.of(set)));
+                new UniverseSetIntensionConstraint(Arrays.asList(set)));
     }
 
     /**
@@ -537,7 +538,7 @@ public final class UniverseIntensionConstraintFactory {
     public static IUniverseIntensionConstraint notIn(IUniverseIntensionConstraint constraint,
             IUniverseIntensionConstraint... set) {
         return binary(UniverseSetBelongingOperator.NOT_IN, constraint,
-                new UniverseSetIntensionConstraint(List.of(set)));
+                new UniverseSetIntensionConstraint(Arrays.asList(set)));
     }
 
     /**
@@ -608,7 +609,7 @@ public final class UniverseIntensionConstraintFactory {
      */
     public static IUniverseIntensionConstraint nary(UniverseOperator operator,
             IUniverseIntensionConstraint... constrs) {
-        return nary(operator, List.of(constrs));
+        return nary(operator, Arrays.asList(constrs));
     }
 
     /**

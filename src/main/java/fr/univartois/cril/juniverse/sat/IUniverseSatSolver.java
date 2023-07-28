@@ -66,7 +66,7 @@ public interface IUniverseSatSolver extends IUniverseSolver {
      * @see #addClause(List)
      */
     default void addAllClauses(List<List<Integer>> clauses) {
-        for (var v : clauses) {
+        for (List<Integer> v : clauses) {
             addClause(v);
         }
     }
@@ -79,9 +79,9 @@ public interface IUniverseSatSolver extends IUniverseSolver {
      * @return The outcome of the search conducted by the solver.
      */
     default UniverseSolverResult solveDimacs(List<Integer> assumptions) {
-        var integerAssumptions = new ArrayList<UniverseAssumption<BigInteger>>(assumptions.size());
+    	ArrayList<UniverseAssumption<BigInteger>> integerAssumptions = new ArrayList<UniverseAssumption<BigInteger>>(assumptions.size());
 
-        for (var a : assumptions) {
+        for (Integer a : assumptions) {
             if (a < 0) {
                 integerAssumptions.add(new UniverseAssumption<>(Integer.toString(-a), true, ZERO));
 
@@ -101,9 +101,9 @@ public interface IUniverseSatSolver extends IUniverseSolver {
      * @return The outcome of the search conducted by the solver.
      */
     default UniverseSolverResult solveBoolean(List<UniverseAssumption<Boolean>> assumptions) {
-        var integerAssumptions = new ArrayList<UniverseAssumption<BigInteger>>(assumptions.size());
+    	ArrayList<UniverseAssumption<BigInteger>> integerAssumptions = new ArrayList<UniverseAssumption<BigInteger>>(assumptions.size());
 
-        for (var a : assumptions) {
+        for (UniverseAssumption<Boolean> a : assumptions) {
             if (Boolean.TRUE.equals(a.getValue())) {
                 integerAssumptions.add(new UniverseAssumption<>(a.getVariableId(), a.isEqual(), ONE));
 
